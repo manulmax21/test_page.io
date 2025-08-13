@@ -197,3 +197,72 @@
         <button @click="next()" class="px-4 py-2 bg-blue-500 text-white rounded">Вперед</button>
     </div>
 </div>
+
+<!--
+
+ scrollHandler2(event) {
+  const container = this.$refs.scroller;
+  const scrollWidth = container.scrollWidth - container.clientWidth;
+
+  // Получаем вертикальную позицию курсора
+  const pageY = event.pageY ?? event.clientY;
+
+  // Игнорируем горизонтальные прокрутки меньше вертикальных
+  if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+
+  const delta = event.deltaY;
+
+  const minScrollDown = 2000;
+  const maxScrollDown = 6500;
+
+  // Нормализованное значение вертикальной позиции мыши (от 0 до 1)
+  let normalizedY = 0;
+  if (pageY <= minScrollDown) normalizedY = 0;
+  else if (pageY >= maxScrollDown) normalizedY = 1;
+  else normalizedY = (pageY - minScrollDown) / (maxScrollDown - minScrollDown);
+
+  // Если хотите плавно анимировать прокрутку, используйте normalizedY напрямую
+  const newPercent = normalizedY; // либо можно по-своему комбинировать с delta
+
+  // Вычисляем новое значение scrollLeft
+  const newScrollLeft = newPercent * scrollWidth;
+
+  // Прокручиваем контейнер плавно
+  container.scrollTo({
+    left: newScrollLeft,
+    behavior: 'smooth'
+  });
+
+  // Отключаем стандартный скролл страницы, если прокрутка возможна по контейнеру
+  if (
+    (delta > 0 && container.scrollLeft + container.clientWidth < container.scrollWidth) ||
+    (delta < 0 && container.scrollLeft > 0)
+  ) {
+    event.preventDefault();
+  }
+
+
+-->
+
+
+<!--    <div-->
+<!--            x-data="{-->
+<!--            scrollX: 0,-->
+<!--            updateScroll(event) {-->
+<!--              // Обрабатываем только горизонтальную прокрутку-->
+<!--              if(event.target.scrollLeft !== this.scrollX){-->
+<!--                this.scrollX = event.target.scrollLeft;-->
+<!--                this.$el.style.setProperty('&#45;&#45;scroll', this.scrollX);-->
+<!--              }-->
+<!--            }-->
+<!--          }"-->
+<!--            @scroll="updateScroll"-->
+<!--            class="testttt">-->
+<!--        <div class="parallax-container">-->
+<!--            <div class="parallax-container" style="width: 300vw; height: 100vh; position: relative;">-->
+<!--                <div class="parallax-layer layer-back" style="background: #9c4827; display: inline-block; width: 100vw; height: 100vh; transform: translateX(calc(var(&#45;&#45;scroll) * 0.3px));"></div>-->
+<!--                <div class="parallax-layer layer-mid" style="background: #c57250; display: inline-block; width: 100vw; height: 100vh; transform: translateX(calc(var(&#45;&#45;scroll) * 0.6px));"></div>-->
+<!--                <div class="parallax-layer layer-front" style="background: #6c6862; display: inline-block; width: 100vw; height: 100vh; transform: translateX(calc(var(&#45;&#45;scroll) * 1px));"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->

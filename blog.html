@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-  <script type="module" crossorigin src="./assets/mainIntro-CvQ66Sbr.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-B0xi83dW.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-DmOFBGxR.css">
-  <link rel="stylesheet" crossorigin href="./assets/cardWidget-C8K0qlJV.css">
+  <script type="module" crossorigin src="./assets/mainIntro-Dnpi_PtD.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget-Bu4XAIsK.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-CytfUNgi.css">
+  <link rel="stylesheet" crossorigin href="./assets/cardWidget-BPog1c0V.css">
 </head>
 <body>
 <div
@@ -321,12 +321,23 @@
                 Статьи
             </h1>
         </div>
-        <div class="NBW-navs g-1">
-            <button class="active">Банкротство физических лиц</button>
-            <button>Банкротство юридических лиц</button>
-            <button>Бесплатное банкротство</button>
-            <button>Кредиты / долги</button>
-            <button>Приставы / коллекторы</button>
+        <div
+                x-data="{
+                    statusBtn: '',
+                    options: ['Банкротство физических лиц' , 'Банкротство юридических лиц', 'Бесплатное банкротство', 'Кредиты / долги', 'Приставы / коллекторы'],
+                      changeStatus: function(item) {
+                        this.statusBtn = item;
+                      }
+                }"
+                x-init="statusBtn = options[0]"
+                class="NBW-navs g-1"
+        >
+            <template x-for="item in options" :key="item">
+                <button
+                        @click="changeStatus(item)"
+                        x-text="item"
+                        :class="item === statusBtn ? 'active btn-BColor-yellow' : '' "></button>
+            </template>
         </div>
     </div>
     <div class="cards-blogs">
@@ -366,7 +377,7 @@
         </div>
         <div class="CB-pagination">
             <div class="container-pagination">
-                <div class="item active">1</div>
+                <div class="item active btn-BColor-yellow">1</div>
                 <div class="item">2</div>
                 <div class="item">3</div>
                 <div class="item">4</div>
@@ -374,6 +385,21 @@
                 <span>...</span>
                 <div class="item">10</div>
             </div>
+<!--            <div class="pagination-t">-->
+<!--                <nav class="flex items-center gap-x-1" aria-label="Pagination">-->
+<!--                    <div class="flex items-center gap-x-1">-->
+<!--                        <button type="button" class="min-h-9.5 min-w-9.5 flex justify-center items-center bg-gray-200 text-gray-800 py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-600 dark:text-white dark:focus:bg-neutral-500" aria-current="page">1</button>-->
+<!--                        <button type="button" class="min-h-9.5 min-w-9.5 flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">2</button>-->
+<!--                        <button type="button" class="min-h-9.5 min-w-9.5 flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">3</button>-->
+<!--                        <div class="hs-tooltip inline-block">-->
+<!--                            <button type="button" class="hs-tooltip-toggle group min-h-9.5 min-w-9.5 flex justify-center items-center text-gray-400 hover:text-blue-600 p-2 text-sm rounded-lg focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:bg-white/10">-->
+<!--                                <span class="group-hover:hidden text-xs">•••</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        <button type="button" class="min-h-9.5 min-w-9.5 flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">8</button>-->
+<!--                    </div>-->
+<!--                </nav>-->
+<!--            </div>-->
         </div>
     </div>
     <footer
