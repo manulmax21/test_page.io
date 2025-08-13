@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-  <script type="module" crossorigin src="./assets/mainIntro-0hGM7Cax.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-CURxv0AX.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-CeKC99qh.css">
-  <link rel="stylesheet" crossorigin href="./assets/cardWidget-BPog1c0V.css">
-  <link rel="stylesheet" crossorigin href="./assets/pages-CGUjY1BX.css">
+  <script type="module" crossorigin src="./assets/mainIntro-uUNmrcOm.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget-D1OjwjZH.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-D_b2Dhce.css">
+  <link rel="stylesheet" crossorigin href="./assets/cardWidget-Bg7O5444.css">
+  <link rel="stylesheet" crossorigin href="./assets/pages-ClZau0-p.css">
 </head>
 <body>
 <div x-data="{
@@ -312,7 +312,7 @@
     </div>
     <div class="login-form-page">
         <div class="LF-form">
-            <h1>Авторизация</h1>
+            <h3>Авторизация</h3>
             <div class="LFF-content">
                 <div class="inps">
                     <p>E-mail</p>
@@ -324,13 +324,21 @@
                 </div>
                 <div class="inps">
                     <p>Пароль</p>
-                    <div class="inp-bl">
+                    <div
+                            x-data="{ showPassword: false }"
+                            class="inp-bl"
+                    >
                         <input
                                 placeholder="Введите пароль"
+                                :type="showPassword ? 'text' : 'password'"
                         />
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg x-show="!showPassword" @click="showPassword = !showPassword" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.2004 10.4417C9.82697 10.8534 9.60039 11.3941 9.60039 11.9864C9.60039 13.2762 10.6749 14.3218 12.0004 14.3218C12.6115 14.3218 13.1693 14.0995 13.593 13.7335M20.4392 14.3218C21.2654 13.0849 21.6004 12.0762 21.6004 12.0762C21.6004 12.0762 19.4158 5.1001 12.0004 5.1001C11.5841 5.1001 11.1843 5.12209 10.8004 5.16359M17.4004 17.3495C16.023 18.2282 14.2497 18.8496 12.0004 18.8128C4.67731 18.6931 2.40039 12.0762 2.40039 12.0762C2.40039 12.0762 3.45825 8.69817 6.60039 6.64342" stroke="#838383" stroke-linecap="round"/>
                             <path d="M20.4004 19.5L5.40039 4.5" stroke="#838383" stroke-linecap="round"/>
+                        </svg>
+                        <svg x-show="showPassword" @click="showPassword = !showPassword" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.2004 10.4417C9.82697 10.8534 9.60039 11.3941 9.60039 11.9864C9.60039 13.2762 10.6749 14.3218 12.0004 14.3218C12.6115 14.3218 13.1693 14.0995 13.593 13.7335M20.4392 14.3218C21.2654 13.0849 21.6004 12.0762 21.6004 12.0762C21.6004 12.0762 19.4158 5.1001 12.0004 5.1001C11.5841 5.1001 11.1843 5.12209 10.8004 5.16359M17.4004 17.3495C16.023 18.2282 14.2497 18.8496 12.0004 18.8128C4.67731 18.6931 2.40039 12.0762 2.40039 12.0762C2.40039 12.0762 3.45825 8.69817 6.60039 6.64342" stroke="#838383" stroke-linecap="round"/>
+                            <path d="M14.4004 12.0289C14.4004 13.3187 13.3259 14.3642 12.0004 14.3642C10.6749 14.3642 9.60039 13.3187 9.60039 12.0289C9.60039 10.7391 10.6749 9.69353 12.0004 9.69353C13.3259 9.69353 14.4004 10.7391 14.4004 12.0289Z" stroke="#838383"/>
                         </svg>
                     </div>
                 </div>
