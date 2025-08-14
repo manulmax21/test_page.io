@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <title>Vite + TS</title>
-    <script type="module" crossorigin src="./assets/mainIntro-B-6vliFg.js"></script>
-    <script type="module" crossorigin src="./assets/cardWidgetItem-BAvoBXFa.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/mainIntro-DdcmTdCL.css">
-    <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-59lD_-Up.css">
+    <script type="module" crossorigin src="./assets/mainIntro-DpZ19ru1.js"></script>
+    <script type="module" crossorigin src="./assets/cardWidgetItem-C_edaE62.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/mainIntro-Btvk9MX2.css">
+    <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-DoprT79B.css">
   </head>
   <body>
     <div
@@ -1384,6 +1384,20 @@
               <div class="SCB-nav pr-out">
                 <div class="SCB-nav-container">
                   <span>1 из 10</span>
+                  <div
+                          class="btns-SWLCW SWLCW-btns-btn"
+                  >
+                    <button @click="prev">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
+                      </svg>
+                    </button>
+                    <button @click="next">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1416,20 +1430,6 @@
                   </div>
                 </template>
               </div>
-            </div>
-            <div
-                    class="btns-SWLCW SWLCW-btns-btn"
-            >
-              <button @click="prev">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
-                </svg>
-              </button>
-              <button @click="next">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
-                </svg>
-              </button>
             </div>
           </div>
         </div>
@@ -1913,7 +1913,7 @@
         <div class="mx-auto relative overflow-hidden">
           <div
                   class="slider-track"
-                  :style="`transform: translateX(-${340 * active}px);`"
+                  :style="`transform: translateX(-${358 * active}px);`"
           >
             <template
                     x-for="(card, idx) in cards"
@@ -2310,7 +2310,7 @@
               <div class="mx-auto relative overflow-hidden">
                 <div
                         class="slider-track"
-                        :style="`transform: translateX(-${380 * active}px);`"
+                        :style="`transform: translateX(-${370 * active}px);`"
                 >
                   <template
                           x-for="(item, idx) in cards"
