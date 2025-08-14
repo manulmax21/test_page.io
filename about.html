@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <title>Vite + TS</title>
-  <script type="module" crossorigin src="./assets/mainIntro-uUNmrcOm.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-D1OjwjZH.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-D_b2Dhce.css">
+  <script type="module" crossorigin src="./assets/mainIntro-B-6vliFg.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget-BOfAkiEB.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-DdcmTdCL.css">
   <link rel="stylesheet" crossorigin href="./assets/cardWidget-Bg7O5444.css">
-  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-Lq1F3gPM.css">
+  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-59lD_-Up.css">
 </head>
 <body>
 <div
@@ -670,7 +670,7 @@
                                           const scrollWidth = container.scrollWidth - container.clientWidth;
                                           const pageY = event.pageY ?? event.clientY;
                                           const minScrollDown = 2100;
-                                          const maxScrollDown = 6500;
+                                          const maxScrollDown = 7500;
                                           const currentPositionInContainer = function() {
                                             if (pageY > minScrollDown && pageY < maxScrollDown) {
                                                 return pageY - minScrollDown
@@ -685,14 +685,14 @@
 
                                           // Процент изменения на основе deltaY и ширины контейнера
                                           // Коэффициент скорости можно менять (например, 0.2)
-                                          const speedFactor = 5.2;
+                                          const speedFactor = 7.2;
 
                                           // Текущее положение прокрутки в процентах от максимума
                                           const currentPercent = container.scrollLeft / scrollWidth;
 
                                           // Новый процент прокрутки с учетом направления и скорости
-                                          let newPercent = currentPercent + (delta * speedFactor) / scrollWidth;
-                                          //let newPercent = currentPercent + (currentPositionInContainer() / (maxScrollDown / 100));
+                                          //let newPercent = currentPercent + (delta * speedFactor) / scrollWidth;
+                                            let newPercent = (currentPositionInContainer() / this.widthScrollContainer);
 
                                           // Ограничиваем значение от 0 до 1
                                           newPercent = Math.min(Math.max(newPercent, 0), 1);
@@ -704,16 +704,16 @@
                                            if (event.pageY < minScrollDown + 100) {
                                             newScrollLeft = 600
                                           }
-                                          if (event.pageY > maxScrollDown + 100){
-                                            newScrollLeft = scrollWidth
-                                          }
+
                                           if (newScrollLeft < 600) {
                                             newScrollLeft = 600
                                           }
-                                          container.scrollTo({
+                                          if (window.innerWidth > 768) {
+                                            container.scrollTo({
                                             left: newScrollLeft,
                                             behavior: 'smooth'
                                           });
+                                          }
 
                                           // Отменяем стандартный скролл страницы, если прокрутка допустима
                                           if (
@@ -728,7 +728,7 @@
             :style="{
               height: window.innerWidth <= 768
                 ? '100%'
-                : (widthScrollContainer ? `${widthScrollContainer + 100}px` : '5000px')
+                : (widthScrollContainer ? `${widthScrollContainer + 1500}px` : '7000px')
             }"
             class="swiper-round-horizantal-scroll-widget"
     >

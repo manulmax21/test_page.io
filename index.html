@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <title>Vite + TS</title>
-    <script type="module" crossorigin src="./assets/mainIntro-uUNmrcOm.js"></script>
-    <script type="module" crossorigin src="./assets/cardWidgetItem-ToUC8BvX.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/mainIntro-D_b2Dhce.css">
-    <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-Lq1F3gPM.css">
+    <script type="module" crossorigin src="./assets/mainIntro-B-6vliFg.js"></script>
+    <script type="module" crossorigin src="./assets/cardWidgetItem-BAvoBXFa.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/mainIntro-DdcmTdCL.css">
+    <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-59lD_-Up.css">
   </head>
   <body>
     <div
@@ -1345,7 +1345,7 @@
                     x-transition:leave-end="opacity-0"
             >
               <div class="title">
-                <h3 x-text="item.title"></h3>
+                <p x-text="item.title"></p>
               </div>
               <div class="text">
                 <p x-text="item.title"></p>
@@ -1381,7 +1381,7 @@
 
           >
             <div class="SCB-title">
-              <div class="SCB-nav">
+              <div class="SCB-nav pr-out">
                 <div class="SCB-nav-container">
                   <span>1 из 10</span>
                 </div>
@@ -1407,7 +1407,7 @@
                           x-transition:leave-end="opacity-0"
                   >
                     <div class="title">
-                      <h1 x-text="item.title"></h1>
+                      <p x-text="item.title"></p>
                     </div>
                     <div class="text">
                       <p x-text="item.title"></p>
@@ -1785,7 +1785,7 @@
             <div class="mx-auto relative overflow-hidden">
               <div
                       class="slider-track"
-                      :style="`transform: translateX(-${380 * active}px);`"
+                      :style="`transform: translateX(-${370 * active}px);`"
               >
                 <template
                         x-for="(item, idx) in items"
@@ -1878,7 +1878,7 @@
                   x-transition:leave="none"
                   class="el-border-SCB"
           ></div>
-          <div class="SCB-nav">
+          <div class="SCB-nav pr-in">
             <div class="SCB-nav-container">
               <h6
                       x-show="mainVisibleSCB"
@@ -2028,7 +2028,7 @@
                         }
                   }
                   "
-                  class="cards"
+                  class="cards cards_video"
           >
             <div class=" mx-auto space-y-4">
               <div class="scroll-slider" x-ref="slider">
@@ -2110,7 +2110,7 @@
 
         </div>
         <div class="section-table-widget-1">
-          <div class="STW-1-cards">
+          <div class="STW-1-cards ind-prav-col-nor">
             <div class="section-item">
               <div
                       x-show="isVisible"
