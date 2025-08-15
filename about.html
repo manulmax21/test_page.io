@@ -1,29 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:x-transition="http://www.w3.org/1999/xhtml" xmlns:x-bind="http://www.w3.org/1999/xhtml"
+      xmlns:x-intersect="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-    <title>Vite + TS</title>
-  <script type="module" crossorigin src="./assets/mainIntro-4Qc-Uax8.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-Cl689J98.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-nA4H__iV.css">
-  <link rel="stylesheet" crossorigin href="./assets/cardWidget-BEWxcIuF.css">
-  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-D0oCxnRQ.css">
+    <title>Юпитер</title>
+  <script type="module" crossorigin src="./assets/mainIntro-BdIIrwK1.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidgetItem-D8POHijo.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-FFB_us79.css">
+  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-C8S-tjzK.css">
 </head>
 <body>
 <div
-        id="app"
         x-data="{
-              menuBurger: false
+                menuBurger: false,
+                showModalFreeCons: false,
+                showModalExit: false,
+                showModalCursor: false,
+                isCursorPoupup: true
             }"
+        id="app"
 >
     <header
             x-data="{
-              show: false
-               }"
+                  show: false
+                   }"
             x-init="setTimeout(() => show = true, 200)"
             x-show="show"
             x-transition:enter="transition ease-out duration-1000"
@@ -32,7 +36,7 @@
             class="header-class">
         <div class="header-container">
             <a
-                    href="/"
+                    href="./"
                     class="logo-btn"
             >
                 <svg class="logo-dek" width="258" height="116" viewBox="0 0 258 116" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -216,7 +220,12 @@
                         width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1L15 15M15 1L1 15" stroke="#161616"/>
                 </svg>
-                <div class="header-item">
+                <div
+                        @click="() => {
+                            isCursorPoupup = false;
+                            showModalFreeCons = true;
+                          }"
+                        class="header-item">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="fff" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.8372 13.2847C14.8372 13.2847 13.9228 14.1729 13.6987 14.4332C13.3336 14.8185 12.9035 15.0004 12.3397 15.0004C12.2855 15.0004 12.2277 15.0004 12.1734 14.9968C11.1 14.929 10.1024 14.5153 9.35425 14.1622C7.30852 13.1848 5.51219 11.7973 4.01946 10.0388C2.78697 8.57285 1.9629 7.21744 1.41713 5.76215C1.08099 4.874 0.958105 4.18202 1.01232 3.52928C1.04846 3.11196 1.21111 2.76597 1.5111 2.46992L2.7436 1.25361C2.9207 1.08954 3.10864 1.00037 3.29298 1.00037C3.52068 1.00037 3.70501 1.13591 3.82067 1.25005C3.82429 1.25361 3.8279 1.25718 3.83152 1.26075C4.05199 1.46406 4.26162 1.67451 4.4821 1.89922C4.59414 2.01336 4.7098 2.1275 4.82546 2.24521L5.81218 3.21897C6.1953 3.59705 6.1953 3.94661 5.81218 4.3247C5.70736 4.42814 5.60616 4.53158 5.50135 4.63145C5.19774 4.9382 5.43624 4.70283 5.12179 4.98105C5.11456 4.98818 5.10733 4.99175 5.10372 4.99888C4.79288 5.30564 4.85071 5.60525 4.91577 5.80857C4.91939 5.81927 4.923 5.82997 4.92662 5.84067C5.18323 6.45417 5.54467 7.032 6.09405 7.72041L6.09767 7.72398C7.09523 8.93672 8.147 9.88194 9.30721 10.606C9.4554 10.6988 9.6072 10.7737 9.75177 10.845C9.88189 10.9092 10.0048 10.9698 10.1096 11.034C10.1241 11.0412 10.1385 11.0519 10.153 11.059C10.2759 11.1196 10.3915 11.1482 10.5108 11.1482C10.8108 11.1482 10.9987 10.9627 11.0602 10.9021L11.7686 10.2029C11.8915 10.0816 12.0867 9.9354 12.3144 9.9354C12.5385 9.9354 12.7228 10.0745 12.8349 10.1958C12.8385 10.1993 12.8385 10.1993 12.8421 10.2029L14.8336 12.1683C15.2059 12.5321 14.8372 13.2847 14.8372 13.2847Z" fill="#fff" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -234,7 +243,7 @@
         <div class="header-from-mobile">
             <div class="HFM-container">
                 <div class="HFM-item">
-                    <a href="./">
+                    <a href="./about.html">
                         <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.3751 16H0.600098V13.2C0.600098 12.6333 0.745931 12.1125 1.0376 11.6375C1.32926 11.1625 1.71676 10.8 2.2001 10.55C3.23343 10.0333 4.28343 9.64583 5.3501 9.3875C6.41676 9.12917 7.5001 9 8.6001 9V11C7.66676 11 6.74176 11.1125 5.8251 11.3375C4.90843 11.5625 4.0001 11.9 3.1001 12.35C2.9501 12.4333 2.82926 12.55 2.7376 12.7C2.64593 12.85 2.6001 13.0167 2.6001 13.2V14H8.7251C8.79176 14.35 8.87926 14.6917 8.9876 15.025C9.09593 15.3583 9.2251 15.6833 9.3751 16ZM14.6001 18C13.3834 17.7 12.4126 17.0333 11.6876 16C10.9626 14.9667 10.6001 13.8167 10.6001 12.55V10L14.6001 8L18.6001 10V12.55C18.6001 13.8167 18.2376 14.9667 17.5126 16C16.7876 17.0333 15.8168 17.7 14.6001 18ZM14.6001 15.9C15.2334 15.6 15.7251 15.1417 16.0751 14.525C16.4251 13.9083 16.6001 13.25 16.6001 12.55V11.25L14.6001 10.25L12.6001 11.25V12.55C12.6001 13.25 12.7751 13.9083 13.1251 14.525C13.4751 15.1417 13.9668 15.6 14.6001 15.9ZM8.6001 8C7.5001 8 6.55843 7.60833 5.7751 6.825C4.99176 6.04167 4.6001 5.1 4.6001 4C4.6001 2.9 4.99176 1.95833 5.7751 1.175C6.55843 0.391667 7.5001 0 8.6001 0C9.7001 0 10.6418 0.391667 11.4251 1.175C12.2084 1.95833 12.6001 2.9 12.6001 4C12.6001 5.1 12.2084 6.04167 11.4251 6.825C10.6418 7.60833 9.7001 8 8.6001 8ZM8.6001 6C9.1501 6 9.62093 5.80417 10.0126 5.4125C10.4043 5.02083 10.6001 4.55 10.6001 4C10.6001 3.45 10.4043 2.97917 10.0126 2.5875C9.62093 2.19583 9.1501 2 8.6001 2C8.0501 2 7.57926 2.19583 7.1876 2.5875C6.79593 2.97917 6.6001 3.45 6.6001 4C6.6001 4.55 6.79593 5.02083 7.1876 5.4125C7.57926 5.80417 8.0501 6 8.6001 6Z" fill="#FDFBF4"/>
                         </svg>
@@ -250,7 +259,7 @@
                     </a>
                 </div>
                 <div class="HFM-item">
-                    <a href="./about.html">
+                    <a href="./">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 15H11V9H9V15ZM10 7C10.2833 7 10.5208 6.90417 10.7125 6.7125C10.9042 6.52083 11 6.28333 11 6C11 5.71667 10.9042 5.47917 10.7125 5.2875C10.5208 5.09583 10.2833 5 10 5C9.71667 5 9.47917 5.09583 9.2875 5.2875C9.09583 5.47917 9 5.71667 9 6C9 6.28333 9.09583 6.52083 9.2875 6.7125C9.47917 6.90417 9.71667 7 10 7ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20ZM10 18C12.2333 18 14.125 17.225 15.675 15.675C17.225 14.125 18 12.2333 18 10C18 7.76667 17.225 5.875 15.675 4.325C14.125 2.775 12.2333 2 10 2C7.76667 2 5.875 2.775 4.325 4.325C2.775 5.875 2 7.76667 2 10C2 12.2333 2.775 14.125 4.325 15.675C5.875 17.225 7.76667 18 10 18Z" fill="#FDFBF4"/>
                         </svg>
@@ -275,8 +284,7 @@
                 </div>
             </div>
         </div>
-    </header>
-    <div class="help_btn_widget HBW-l">
+    </header>    <div class="help_btn_widget HBW-l">
         <div
                 x-data="{
                   isVisible: false,
@@ -314,7 +322,9 @@
                       'isOpen': isVisible,
                       'isClose': !isVisible
                     }"
-                ></div>
+                >
+                    <img src="./assets/avatar_vertical-Bn8EoBi-.png">
+                </div>
                 <div
                         x-show="isVisible"
                         class="nav_btn_H"
@@ -332,7 +342,12 @@
                         </button>
                     </div>
                     <div class="item">
-                        <button class="or btn-BColor-yellow">Списать долги</button>
+                        <button
+                                @click="() => {
+                          isCursorPoupup = false;
+                          showModalFreeCons = true;
+                        }"
+                                class="or btn-BColor-yellow">Списать долги</button>
                     </div>
                 </div>
             </div>
@@ -383,7 +398,7 @@
             <ul>
                 <li>
                     <span>01</span>
-                    <a href="./about.html">
+                    <a href="./">
                         <h3>
                             О компании
                         </h3>
@@ -391,7 +406,7 @@
                 </li>
                 <li>
                     <span>02</span>
-                    <a href="./personal-account.html">
+                    <a href="about">
                         <h3>
                             Для физлиц
                         </h3>
@@ -399,7 +414,7 @@
                 </li>
                 <li>
                     <span>03</span>
-                    <a href="./partner-program.html">
+                    <a href="partner-program.html">
                         <h3>
                             Стать партнером
                         </h3>
@@ -407,7 +422,7 @@
                 </li>
                 <li>
                     <span>04</span>
-                    <a href="./contacts.html">
+                    <a href="contacts.html">
                         <h3>
                             Контакты
                         </h3>
@@ -415,7 +430,7 @@
                 </li>
                 <li>
                     <span>05</span>
-                    <a href="./blog.html">
+                    <a href="blog.html">
                         <h3>
                             Блог
                         </h3>
@@ -460,22 +475,15 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div
-            class="main-intro prav1010-forintrotxt"
-            x-data="{
-              showModalFreeCons: false,
-              showModalExit: false,
-              showModalCursor: false,
-              isCursorPoupup: true
-               }"
+    </div>    <div
+            class="main-intro"
     >
         <div class="animated-circles-from-main-intro">
             <svg width="1920" height="799" viewBox="0 0 1920 799" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g filter="url(#filter0_f_1_2)">
+                <g class="item-1" filter="url(#filter0_f_1_2)">
                     <ellipse cx="1107.27" cy="158.46" rx="324.968" ry="1420.16" transform="rotate(-95.7469 1107.27 158.46)" fill="url(#paint0_linear_1_2)"/>
                 </g>
-                <g style="mix-blend-mode:color-dodge" filter="url(#filter1_f_1_2)">
+                <g class="item-2" style="mix-blend-mode:color-dodge" filter="url(#filter1_f_1_2)">
                     <ellipse cx="685.496" cy="816.495" rx="685.496" ry="816.495" transform="matrix(-0.987914 -0.155002 0.955985 -0.293415 1039.85 412.071)" fill="url(#paint1_linear_1_2)"/>
                 </g>
                 <defs>
@@ -504,68 +512,70 @@
                 </defs>
             </svg>
         </div>
-        <div class="ACFMI-content forDEKPageAboutPrav1108 prav-1008-ACFMI-content">
-            <div class="main-intro-container about-main-intro-container-MW">
-                <div class="main-intro-title">
-                    <div class="main-intro-item prav-main-intro-item1208">
-                        <h6
-                                x-data="{ show: false }"
-                                x-init="setTimeout(() => show = true, 0)"
-                                x-show="show"
-                                x-transition:enter="transition ease-out duration-500 delay-700"
-                                x-transition:enter-start="translate-y-56"
-                                x-transition:enter-end="translate-y-0"
-                        >
-                            Сервис по списанию долгов
-                        </h6>
-                        <h1
-                                x-data="{ show: false }"
-                                x-init="setTimeout(() => show = true, 0)"
-                                x-show="show"
-                                x-transition:enter="transition ease-out duration-650 delay-500"
-                                x-transition:enter-start="translate-y-56"
-                                x-transition:enter-end="translate-y-0"
-                        >
-                            О компании юпитер
-                        </h1>
-                    </div>
+        <div class="main-intro-container">
+            <div class="main-intro-title">
+                <div class="main-intro-item fhCus6">
+                    <h6
+                            x-data="{ show: false }"
+                            x-init="setTimeout(() => show = true, 900)"
+                            x-show="show"
+                            x-transition:enter="transition ease-out duration-500"
+                            x-transition:enter-start="translate-y-56"
+                            x-transition:enter-end="translate-y-0"
+                    >
+                        Всё делается через личный кабинет — не нужно ходить по инстанциям
+                    </h6>
+                    <h1
+                            x-data="{ show: false }"
+                            x-init="setTimeout(() => show = true, 0)"
+                            x-show="show"
+                            x-transition:enter="transition ease-out duration-650 delay-400"
+                            x-transition:enter-start="translate-y-56"
+                            x-transition:enter-end="translate-y-0"
+                    >
+                        Cписываем долги </br>
+                        законно и с гарантией
+                    </h1>
                 </div>
-            </div>
-            <div
-                    x-data="{ show: false }"
-                    x-init="setTimeout(() => show = true, 0)"
-                    x-show="show"
-                    x-transition:enter="transition ease-out duration-500 delay-700"
-                    x-transition:enter-start="translate-x-556"
-                    x-transition:enter-end="translate-x-0"
-                    class="main-intro-video-widget-about prav-1008-in-intro-video-widget-about row">
-                <div class="item-video col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                    <div class="video-about"></div>
-                </div>
-                <div class="item-text col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                    <div class="MIVWA-btns">
-                        <button class="btn-BColor-yellow">
-                            <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.0006 0.855139C15.8332 1.38995 15.5884 1.89735 15.2739 2.36114L15.2866 2.34114C14.9879 2.83892 14.6312 3.41403 14.2166 4.06647C13.861 4.58158 13.6728 4.84825 13.6519 4.86647C13.5574 4.98579 13.496 5.12789 13.4739 5.27847L13.4732 5.28314C13.4904 5.41893 13.5534 5.54477 13.6519 5.63981L13.9186 5.93714C15.3452 7.40336 16.1477 8.41403 16.3259 8.96914C16.3597 9.06032 16.3706 9.15842 16.3575 9.25479C16.3445 9.35116 16.308 9.44286 16.2512 9.52181L16.2526 9.51981C16.1853 9.58884 16.1035 9.64197 16.013 9.6753C15.9226 9.70864 15.8259 9.72134 15.7299 9.71247H15.7326H13.9752C13.7506 9.71247 13.5439 9.63381 13.3819 9.50314L13.3839 9.50447C13.1528 9.31461 12.9405 9.10297 12.7499 8.87247L12.7439 8.86447C12.4368 8.51736 12.1643 8.22514 11.9266 7.98781C11.1346 7.23492 10.5501 6.85847 10.1732 6.85847C10.0517 6.84824 9.93023 6.88001 9.82924 6.94847L9.83123 6.94714C9.78807 7.00146 9.75636 7.06396 9.73802 7.13088C9.71969 7.1978 9.71511 7.26774 9.72457 7.33647V7.33381C9.69929 7.6449 9.69083 7.95713 9.69923 8.26914V8.25781V9.03047C9.71817 9.12277 9.71167 9.21847 9.68044 9.30736C9.6492 9.39624 9.59441 9.47498 9.5219 9.53514L9.52124 9.53581C9.18345 9.68771 8.81193 9.74906 8.44324 9.71381L8.4519 9.71447C7.44258 9.69794 6.45701 9.40561 5.6019 8.86914L5.62524 8.88247C4.63843 8.28832 3.79284 7.48641 3.14723 6.53247L3.12924 6.50447C2.50218 5.66805 1.95089 4.77741 1.4819 3.84314L1.43523 3.74047C1.12333 3.13518 0.848818 2.51135 0.613234 1.87247L0.573234 1.74914C0.464581 1.41728 0.395219 1.07382 0.366568 0.725806L0.365234 0.709139C0.365234 0.372251 0.563457 0.203806 0.959901 0.203806H2.71323C2.89048 0.190056 3.06639 0.243616 3.2059 0.353806L3.20457 0.352473C3.3379 0.498473 3.43657 0.677806 3.48523 0.877806L3.48723 0.885806C3.77684 1.71537 4.13058 2.52114 4.54523 3.29581L4.50057 3.20447C4.8004 3.81306 5.16304 4.38864 5.58257 4.92181L5.56724 4.90114C5.92279 5.33758 6.20012 5.55581 6.39923 5.55581L6.42057 5.55647C6.46744 5.55654 6.51351 5.54425 6.55412 5.52084C6.59474 5.49744 6.62846 5.46374 6.6519 5.42314L6.65257 5.42181C6.71602 5.25462 6.7413 5.07536 6.72657 4.89714V4.90114V2.31514C6.71432 2.02191 6.64169 1.73436 6.51324 1.47047L6.51857 1.48314C6.44046 1.31557 6.3395 1.15964 6.21857 1.01981L6.22057 1.02247C6.10882 0.910837 6.0361 0.766101 6.01324 0.609806L6.01257 0.605806C6.01257 0.492473 6.06457 0.390473 6.1459 0.323806L6.14657 0.323139C6.23034 0.246598 6.33976 0.204254 6.45324 0.204473H9.22257C9.2921 0.196116 9.36262 0.205279 9.4277 0.231128C9.49279 0.256976 9.55038 0.29869 9.59523 0.352473L9.5959 0.35314C9.6801 0.508723 9.71695 0.68554 9.7019 0.861806V0.858473V4.30714C9.69159 4.44314 9.72323 4.57902 9.79257 4.69647L9.79124 4.69381C9.81561 4.73034 9.84862 4.76028 9.88735 4.78098C9.92608 4.80168 9.96932 4.8125 10.0132 4.81247C10.1256 4.80504 10.2347 4.76776 10.3279 4.70447L10.3259 4.70581C10.5063 4.58136 10.6639 4.43892 10.7986 4.27847L10.8012 4.27514C11.2131 3.80914 11.5824 3.30712 11.9046 2.77514L11.9306 2.72847C12.1599 2.34847 12.4079 1.88047 12.6326 1.39981L12.6739 1.30181L12.9712 0.707139C13.0234 0.553261 13.1243 0.420598 13.2587 0.32928C13.3931 0.237962 13.5536 0.192973 13.7159 0.201139H13.7139H15.4679C15.9417 0.201139 16.1195 0.419139 16.0012 0.855139H16.0006Z" fill="#F1F1F1"/>
-                            </svg>
-                        </button>
-                        <button class="btn-BColor-yellow">
-                            <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2769 0.582096C13.449 0.509404 13.6374 0.484334 13.8225 0.509493C14.0076 0.534652 14.1825 0.609121 14.3292 0.725149C14.4758 0.841177 14.5888 0.994523 14.6563 1.16922C14.7239 1.34393 14.7435 1.5336 14.7132 1.7185L13.1334 11.3332C12.9802 12.2606 11.966 12.7925 11.1183 12.3305C10.4092 11.944 9.35596 11.3486 8.40863 10.7272C7.93497 10.4162 6.48404 9.42032 6.66236 8.71164C6.8156 8.1057 9.25356 5.8287 10.6467 4.47494C11.1935 3.94308 10.9441 3.63626 10.2984 4.12549C8.69492 5.34017 6.12043 7.18735 5.26924 7.70733C4.51835 8.1658 4.12688 8.24408 3.65879 8.1658C2.80481 8.02323 2.01282 7.80238 1.36641 7.5333C0.492929 7.16988 0.535419 5.96498 1.36572 5.61414L13.2769 0.582096Z" fill="#F1F1F1"/>
-                            </svg>
-                        </button>
-                        <button class="btn-BColor-yellow">
-                            <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2769 0.582096C13.449 0.509404 13.6374 0.484334 13.8225 0.509493C14.0076 0.534652 14.1825 0.609121 14.3292 0.725149C14.4758 0.841177 14.5888 0.994523 14.6563 1.16922C14.7239 1.34393 14.7435 1.5336 14.7132 1.7185L13.1334 11.3332C12.9802 12.2606 11.966 12.7925 11.1183 12.3305C10.4092 11.944 9.35596 11.3486 8.40863 10.7272C7.93497 10.4162 6.48404 9.42032 6.66236 8.71164C6.8156 8.1057 9.25356 5.8287 10.6467 4.47494C11.1935 3.94308 10.9441 3.63626 10.2984 4.12549C8.69492 5.34017 6.12043 7.18735 5.26924 7.70733C4.51835 8.1658 4.12688 8.24408 3.65879 8.1658C2.80481 8.02323 2.01282 7.80238 1.36641 7.5333C0.492929 7.16988 0.535419 5.96498 1.36572 5.61414L13.2769 0.582096Z" fill="#F1F1F1"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <h4>Философия компании</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem debitis error ex facere, fugit incidunt, laborum libero minus modi natus, obcaecati perferendis quidem saepe tenetur totam unde veritatis voluptate!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem debitis error ex facere, fugit incidunt, laborum libero minus modi natus, obcaecati perferendis quidem saepe tenetur totam unde veritatis voluptate!</p>
+                <div class="main-intro-item">
+                    <h6
+                            x-data="{ show: false }"
+                            x-init="setTimeout(() => show = true, 0)"
+                            x-show="show"
+                            x-transition:enter="transition ease-out duration-500 delay-1000"
+                            x-transition:enter-start="translate-y-56"
+                            x-transition:enter-end="translate-y-0"
+                    >
+                        - Без головной боли<br>
+                        - Конфиденциально<br>
+                        - Минимум личных визитов<br>
+                        - Персональный юрист<br>
+                    </h6>
+                    <button
+                            x-data="{ show: false }"
+                            x-init="setTimeout(() => show = true, 0)"
+                            x-show="show"
+                            @click="() => {
+                        isCursorPoupup = false;
+                        showModalFreeCons = true;
+                      }"
+                            x-transition:enter="transition ease-out duration-1700 delay-1300"
+                            x-transition:enter-start="opacity-0"
+                            x-transition:enter-end="opacity-100"
+                            class="Btn btn-BColor-yellow"
+                    >Списать долги</button>
                 </div>
             </div>
         </div>
+
+        <div
+                x-data="{ show: false }"
+                x-show="show"
+                x-transition:enter="transition ease-linear duration-1200"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                class="main-intro-video"
+        ></div>
         <div
                 x-show="showModalFreeCons"
                 class="modalPoupup"
@@ -587,14 +597,26 @@
                     @mouseleave="() => {
                     isCursorPoupup = false;
                   }"
-                    class="modalPopupContent"
+                    class="modalPopupContent baground-for-consultation-popup MPC-for-mob-form"
             >
                 <div
                         :style="{cursor: 'initial'}"
                         class="freeConsultationMain"
                 >
                     <div class="FC-info-item">
-                        <h1>бесплатная консультация</h1>
+                        <div
+                                @click="() => {
+                          showModalFreeCons = false
+                          showModalExit = false;
+                      }"
+                                class="exitMob_form_con"
+                        >
+                            <h3>бесплатная консультация</h3>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L19 19M19 1L1 19" stroke="#161616"/>
+                            </svg>
+                        </div>
+
                         <span>
                   Оставтье нам свои данные и наш менеджер перезвонит <br/>
                   вам в ближайшее время и ответит на все ваши вопросы
@@ -607,8 +629,10 @@
                         </div>
                         <div class="pol-kon">
                             <label class="custom-checkbox-MY">
-                                <input type="checkbox" />
-                                <span class="checkmark"></span>
+                                <label class="custom-checkbox-MY">
+                                    <input type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </label>
                             </label>
                             <span>Согласен с обработкой персональных данных согласно политики конфиденциальности</span>
                         </div>
@@ -632,11 +656,11 @@
                           }
                         }"
                 @mousemove.window="update($event)"
-                :style="{zIndex: 18}"
+                :style="{zIndex: 28}"
         >
             <div
 
-                    class="cursorFromPoupup"
+                    class="cursorFromPoupup baground-for-consultation-popup"
                     :style="`position: fixed; top: ${y}px; left: ${x}px; pointer-events: none;`"
             >
                 <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -658,19 +682,30 @@
                       update($event)
                     }
                   "
-                x-transition:enter="transition ease-linear duration-1200"
+                x-show="showModalExit && showModalFreeCons"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
+                x-transition:enter="opacity ease-linear duration-700"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                x-transition:leave="opacity ease-linear duration-600"
                 :style="showModalExit ?
-                  `z-index: 20; position: fixed; top: ${y}px; left: ${x}px;`
-                  : ' '"
-                x-show="showModalExit && showModalFreeCons"
+                  `z-index: 20; position: fixed; top: ${y - 100}px; left: ${x - 150}px;`
+                  : ` position: fixed; top: ${y - 100}px; left: ${x - 150}px;`"
                 x-transition
                 class="modalPopupContent"
         >
-            <div class="freeConsultationExit">
+            <div
+                    x-show="showModalExit && showModalFreeCons"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:enter="opacity ease-linear duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    x-transition:leave="opacity ease-linear duration-400"
+                    class="freeConsultationExit">
                 <div class="FCE-item">
-                    <h3>Забыли отправить заявку?</h3>
+                    <h4>Забыли отправить заявку?</h4>
                 </div>
                 <div class="FCE-item">
                     <button
@@ -689,21 +724,613 @@
             </div>
         </div>
     </div>
-    <div class="main-intro mf-about mf-about-prav-0808-pd prav1010fortitle">
-        <div class="main-intro-container">
+    <div class="video-widget">
+        <div
+                class="video-container"
+                style="position: relative; padding-bottom: 50.25%; height: 0; overflow: hidden;"
+        >
             <div
-                    x-data="{
-                        mainVisibleSSLCW: false,
-                    }"
-                    x-intersect.full="mainVisibleSSLCW = true"
-                    class="main-intro-title">
-                <div
-                        x-data="{
-                          textFull: 'Знаем, как списывать долги\n - и делаем это каждый день.',
-                          textShown: '',
-                          index: 0
+                    x-data="{ scrollPosition: 0, animationClass: '' }"
+                    x-init="window.addEventListener('scroll', () => { scrollPosition = window.pageYOffset; });"
+                    :class="{
+                          'animate-element': scrollPosition > 300,
+                          'animate-element-end': scrollPosition > 1300
                         }"
-                        x-init="
+                    class="video translate-y-10"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            >
+                <iframe
+                        src="https://rutube.ru/play/embed/b663b39063d621f63e9fb7d9ad3247ba/"
+                        style="width: 100%; height: 100%; border: none; object-fit: cover;"
+                        title="Видео"
+                        allowfullscreen
+                        allow="autoplay; encrypted-media"
+                        sandbox="allow-scripts allow-same-origin allow-presentation allow-pointer-lock allowfullscreen"
+                ></iframe>
+            </div>
+
+        </div>
+    </div>
+    <div class="section-table-widget-1 custom-mar-100 custom-container"
+         x-data="{
+                  mainVisibleSTW1: false
+                }"
+         x-intersect.half="mainVisibleSTW1 = true"
+    >
+        <div
+                class="title-main"
+        >
+            <div
+                    class="el-border"
+                    x-show="mainVisibleSTW1"
+                    x-transition:enter-start="opacity-0 delay-700"
+                    x-transition:enter-end="opacity-100 delay-700"
+                    x-transition:enter="opacity ease-linear duration-200"
+                    x-transition:leave="none"
+            ></div>
+            <div
+                    class="span-container-STW1"
+            >
+          <span
+                  x-show="mainVisibleSTW1"
+                  x-transition:enter="transition transform ease-out duration-450 delay-500"
+                  x-transition:enter-start="translate-y-16"
+                  x-transition:enter-end="translate-y-0"
+                  x-transition:leave="none"
+          >
+            Не стоит медлить, если:
+          </span>
+            </div>
+
+
+        </div>
+        <div class="STW-1-cards row">
+            <div class="section-item prav-08-08-sheet-main-not-mar col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                <div
+                        x-show="mainVisibleSTW1"
+                        x-transition:enter="transition transform ease-out duration-1250 delay-500"
+                        x-transition:enter-start="translate-y-150 opacity-0"
+                        x-transition:enter-end="translate-y-0 opacity-100"
+                        x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                        x-transition:leave-start="translate-y-0"
+                        x-transition:leave-end="translate-y-0"
+                        class="MF-animate"
+                >
+                    <div
+
+                            class="main-info"
+                            x-ref="target"
+                    >
+                        <h4>
+                            бесплатный правовой анализ
+                        </h4>
+                        <p>
+                            Получите бесплатный правовой анализ — мы честно скажем, подходит ли вам банкротство и расскажем о рисках.
+                        </p>
+                        <button
+                                class="Btn btn-BColor-yellow"
+                                @click="() => {
+                        isCursorPoupup = false;
+                        showModalFreeCons = true;
+                      }"
+                        >
+                            Получить анализ
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="section-item prav-08-08-sheet-main-not-mar col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                <div class="sheet">
+                    <ul>
+                        <li>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-400"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="sheet-item"
+                            >
+                                <span>01</span>
+                                <p>Из-за кредитов не хватает даже на еду</p>
+                            </div>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-400"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="el-border"
+                            ></div>
+                        </li>
+                        <li>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="sheet-item"
+                            >
+                    <span
+                    >02</span>
+                                <p>Сумма ваших долгов свыше 250 тыс ₽</p>
+                            </div>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="el-border"
+                            ></div>
+                        </li>
+                        <li>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-800"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="sheet-item"
+                            >
+                                <span>03</span>
+                                <p>На вас давят коллекторы, арестовали счета, поступают иски</p>
+                            </div>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-800"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="el-border"
+                            ></div>
+                        </li>
+                        <li>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-1000"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="sheet-item"
+                            >
+                                <span>04</span>
+                                <p>Банкротства не было последние 5 лет</p>
+                            </div>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-1000"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="el-border"
+                            ></div>
+                        </li>
+                        <li>
+                            <div
+                                    x-show="mainVisibleSTW1"
+                                    x-transition:enter="transition transform ease-out duration-1250 delay-1200"
+                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                    class="sheet-item"
+                            >
+                                <span>05</span>
+                                <p>Нет уголовных дел или статей за мошенничество</p>
+                            </div>
+                            <div x-show="mainVisibleSTW1"
+                                 x-transition:enter="transition transform ease-out duration-1250 delay-1200"
+                                 x-transition:enter-start="translate-x-550 opacity-0"
+                                 x-transition:enter-end="translate-x-0 opacity-100"
+                                 x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                 x-transition:leave-start="translate-x-0 opacity-100"
+                                 x-transition:leave-end="translate-x-0 opacity-0"
+                                 class="el-border"
+                            ></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div
+            x-data="{
+                  mainVisibleSAVW: false
+                }"
+            x-intersect.full="mainVisibleSAVW = true"
+            class="section-about-bat-widget prav-1008-section-about-bat-widget"
+    >
+        <div class="SABW-title">
+            <h3
+                    x-show="mainVisibleSAVW"
+                    x-transition:enter="transition transform ease-out duration-1050 delay-400"
+                    x-transition:enter-start="translate-y-20 opacity-0"
+                    x-transition:enter-end="translate-y-0 opacity-100"
+                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                    x-transition:leave-start="translate-y-0"
+                    x-transition:leave-end="translate-y-0"
+            >Рассчитайте стоимость банкротства уже сейчас</h3>
+        </div>
+        <div
+                x-show="mainVisibleSAVW"
+                x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="SABW-content"
+        >
+            <div
+                    class="SABW-widget"
+                    x-data="{
+                    stateQuestion: 1,
+                    answered: [],
+                    currQuestion: '',
+                    questions: [
+                      {id: 1, title: 'о задолженности', text: 'Укажите сумму вашего долга', desc: '*Полная сумма задолженности перед всеми кредиторами',
+                      answers: ['Менее 300 тыс. ₽', 'От 300 до 500 тыс. ₽', 'От 500 тыс. до 1 млн ₽', 'Более 1 млн ₽']},
+                      {id: 2, title: 'Обязательства', text: 'Какие виды долговых обязательств у вас имеются?', desc: '',
+                      answers: ['Потребительские кредиты', 'Микрофинансовые организации', 'Частные займы', 'Ипотека', 'Другое']},
+                      {id: 3, title: 'Имущество', text: 'Есть ли у вас имущество кроме единственного жилья?', desc: 'Например: машина, дача, гараж или иное имущество',
+                      answers: ['Да', 'Нет']},
+                      {id: 4, title: 'Сделки с имуществом', text: 'Совершали ли вы сделки с имуществом за последние три года?', desc: 'Например: сделки купли, продажи или дарения',
+                      answers: ['Да', 'Нет']},
+                      {id: 5, title: 'Результат', text: 'Предварительно - ваши долги могут быть списаны с помощью процедуры банкротства! Наш юрист свяжется с вами, проведет бесплатную консультацию и назовет точную стоимость', desc: '',
+                      answers: []}
+                    ],
+                    getAnswer: function (ans) {
+                      if (ans) {
+                          this.answered.push(ans)
+                      }
+                      console.log(this.answered)
+                    },
+                    nextQ: function () {
+                      if (this.stateQuestion > 0 && this.stateQuestion !== this.questions.length) {
+                        this.answered[this.stateQuestion - 1] = this.currQuestion;
+                        this.stateQuestion += 1;
+                        this.currQuestion = this.questions[this.stateQuestion-1].answers[0];
+                      }
+                    },
+                    prevQ: function () {
+                      if (this.stateQuestion > 1) {
+                        this.stateQuestion -= 1
+                        this.currQuestion = this.questions[this.stateQuestion - 1].answers[0]
+                      }
+                    },
+                    changeQuestion: function (q) {
+                      this.currQuestion = q
+                    }
+                  }"
+                    x-init="currQuestion = questions[0].answers[0]"
+            >
+                <div class="nav">
+                    <div class="nav-title">
+                        <template x-for="(item, index) in questions" :key="item.id">
+                            <h4 x-show="stateQuestion === index + 1" x-text="item.title"></h4>
+                        </template>
+                        <div class="check">
+                            <i class="fi fi-rr-shield-check"></i>
+                            <span>
+                    Вся информация остается <br/> конфиденциальной
+                  </span>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <template x-for="(item, index) in questions" :key="item.id">
+                            <div
+                                    :class="stateQuestion >= (index + 1) ? 'option-item active' : 'option-item'"
+                            ></div>
+                        </template>
+                    </div>
+                    <div class="check check_mob">
+                        <i class="fi fi-rr-shield-check"></i>
+                        <span>
+                    Вся информация остается <br/> конфиденциальной
+                  </span>
+                    </div>
+                </div>
+                <div class="SABW-text">
+                    <template x-for="(item, index) in questions" :key="index">
+                        <div x-show="stateQuestion === index + 1 && stateQuestion < questions.length" class="queast">
+                            <div class="text-item">
+                                <p x-text="item.text"></p>
+                                <span x-text="item.desc"></span>
+                            </div>
+                            <div class="text-item btns row g-3 mt-2">
+                                <template x-for="(ans, ansIndex) in item.answers" :key="ansIndex">
+                                    <button
+                                            @click="changeQuestion(ans)"
+                                            x-text="ans"
+                                            class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                                            :class="{
+                                'active_btn': currQuestion === ans || (currQuestion === '' && ansIndex === 0),
+                                'btn_33': stateQuestion === 2 && ansIndex > 1
+                              }"
+                                    ></button>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    <div x-show="stateQuestion === 5" class="queast">
+                        <div class="text-item">
+                            <p>
+                                Предварительно - ваши долги могут быть списаны с помощью процедуры банкротства! Наш юрист свяжется с вами, проведет бесплатную консультацию и назовет точную стоимость
+                            </p>
+                        </div>
+                        <div class="text-item btns inps-form g-3 mt-2">
+                            <input
+                                    type="text"
+                                    placeholder="Имя*"
+                            />
+                            <input
+                                    type="text"
+                                    placeholder="Телефон*"
+                            />
+                        </div>
+                        <div class="check_block">
+                            <div class="CBForm-checkbox">
+                                <label class="custom-checkbox-MY custom-checkbox-MYwww">
+                                    <input type="checkbox" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <span>Согласен с обработкой персональных данных согласно политики конфиденциальности</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-item btns row g-3 mt-3">
+                        <button
+                                @click="prevQ()"
+                                class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                                :class="stateQuestion > 1 ? 'b-forward' : 'b-back'"
+                        >Назад</button>
+                        <button
+                                @click="nextQ()"
+                                class=" col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                                :class="stateQuestion > questions.length ? 'b-back' : 'b-forward'"
+                                x-text="stateQuestion === 5 ? 'Оставить заявку' : 'Далее' "
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+            class="section-orders-widget"
+            x-data="{
+                  mainVisibleSOW: false
+                }"
+            x-intersect.full="mainVisibleSOW = true"
+    >
+        <div
+                class="SOW-title pad-prav-fromSOW-orders-widget"
+                x-show="mainVisibleSOW"
+                x-transition:enter="transition transform ease-out duration-1250 delay-700"
+                x-transition:enter-start="translate-y-150 opacity-0"
+                x-transition:enter-end="translate-y-0 opacity-100"
+                x-transition:leave="none"
+        >
+            <h3>Спецпредложение</h3>
+        </div>
+        <div
+                class="SOW-nav pad-prav-fromSOW-orders-widget"
+                x-show="mainVisibleSOW"
+                x-transition:enter="transition transform ease-out duration-1250 delay-700"
+                x-transition:enter-start="translate-y-150 opacity-0"
+                x-transition:enter-end="translate-y-0 opacity-100"
+                x-transition:leave="none"
+        >
+            <span>с 16.06.2025 по 27.06.2025</span>
+            <button class="btn-BColor-yellow">Ознакомиться с договором</button>
+        </div>
+        <div class="SOW-content SOW-prav-08-08-page-main pad-prav-fromSOW-orders-widget">
+            <div class="text-content-container">
+                <div
+                        x-show="mainVisibleSOW"
+                        x-transition:enter="transition transform ease-out duration-1000 delay-1000"
+                        x-transition:enter-start="translate-x-550"
+                        x-transition:enter-end="translate-x-0"
+                        x-transition:leave="none"
+                        class="order-img-container"
+                >
+                    <img src="./assets/order-DUcXv_i3.png" alt="order">
+                </div>
+                <div
+                        x-show="mainVisibleSOW"
+                        x-transition:enter="transition transform ease-out duration-1000 delay-1200"
+                        x-transition:enter-start="translate-x-550"
+                        x-transition:enter-end="translate-x-0"
+                        x-transition:leave="none"
+                        class="SOW-TCC-item DC"
+                >
+                    <div class="TCC-title">
+                        <h4>Гарантия возрата средств</h4>
+                        <p>
+                            Если процедура банкровства не будет завершена по меньшей вине
+                            -мы вернем все оплченные средства. Гарантия
+                            зафикссирована в договоре
+                        </p>
+                    </div>
+                    <div class="TCC-text">
+                        <h4>24 500 Р</h4>
+                        <h4 class="yelTextH">0 Р</h4>
+                    </div>
+                </div>
+                <div
+                        x-show="mainVisibleSOW"
+                        x-transition:enter="transition transform ease-out duration-1000 delay-1400"
+                        x-transition:enter-start="translate-x-550"
+                        x-transition:enter-end="translate-x-0"
+                        x-transition:leave="none"
+                        class="SOW-TCC-item DC"
+                >
+                    <div class="TCC-title">
+                        <h4>Защита от банков и коллекторов</h4>
+                        <p>
+                            После запуска процедуры мы берём на себя общение с кредиторами и коллекторами. Вы получаете защиту и спокойствие на всём пути.
+                        </p>
+                    </div>
+                    <div class="TCC-text">
+                        <h4>12 000 Р</h4>
+                        <h4 class="yelTextH">0 Р</h4>
+                    </div>
+                </div>
+                <div class="SOW-content-mobile">
+                    <div
+                            x-show="mainVisibleSOW"
+                            x-transition:enter="transition transform ease-out duration-1000 delay-1200"
+                            x-transition:enter-start="translate-x-550"
+                            x-transition:enter-end="translate-x-0"
+                            x-transition:leave="none"
+                            class="SOW-TCC-item"
+                    >
+                        <div class="TCC-title">
+                            <h2>Гарантия возрата средств</h2>
+                            <p>
+                                Если процедура банкровства не будет завершена по меньшей вине
+                                -мы вернем все оплченные средства. Гарантия
+                                зафикссирована в договоре
+                            </p>
+                        </div>
+                        <div class="TCC-text">
+                            <h4>24 500 Р</h4>
+                            <h4 class="yelTextH">0 Р</h4>
+                        </div>
+                    </div>
+                    <div
+                            x-show="mainVisibleSOW"
+                            x-transition:enter="transition transform ease-out duration-1000 delay-1400"
+                            x-transition:enter-start="translate-x-550"
+                            x-transition:enter-end="translate-x-0"
+                            x-transition:leave="none"
+                            class="SOW-TCC-item"
+                    >
+                        <div class="TCC-title">
+                            <h2>Защита от банков и коллекторов</h2>
+                            <p>
+                                После запуска процедуры мы берём на себя общение с кредиторами и коллекторами. Вы получаете защиту и спокойствие на всём пути.
+                            </p>
+                        </div>
+                        <div class="TCC-text">
+                            <h4>12 000 Р</h4>
+                            <h4 class="yelTextH">0 Р</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+                x-data="{
+                items: [
+                  {
+                    title: '«У меня отберут жильё и имущество»',
+                    description: 'Наши клиенты сохраняют жильё, транспорт и даже бытовую технику. Мы заранее оцениваем риски и находим законные способы защиты имущества.'
+                  },
+                  {
+                    title: '«Мне всё запретят: кредиты, бизнес, работу»',
+                    description: 'Если процедура банкротства не будет завершена по меньшей вине — мы вернем все оплаченные средства. Гарантия зафиксирована в договоре.'
+                  },
+                  {
+                    title: '«Меня могут посадить за долги»',
+                    description: 'Банкротство — это законная процедура. Только за 2024 г. более 500 тыс россиян уже прошли процедуру банкротства и списали свои долги.'
+                  },
+                  {
+                    title: '«Коллекторы доведут до истощения»',
+                    description: 'Сразу после подачи заявления в суд все требования, звонки и угрозы прекращаются по закону. Вы получаете защиту уже с первого этапа.'
+                  }
+                ]
+          }"
+                x-show="mainVisibleSOW"
+                x-transition:enter="transition transform ease-out duration-1000 delay-1400"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="none"
+                class="SOW-slider SOW-prav-slider-08-08-page-main row g-3"
+        >
+            <template x-for="item in items" :key="item">
+                <div class="SOW-item-contaienr col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="item-card">
+                        <h4 x-text="item.title"></h4>
+                        <p x-text="item.description"></p>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+    </div>
+    <div
+            x-data="{
+                  mainVisibleSSLCW: false,
+                  items: [
+                          {
+                          title: 'Гарантия результата в договоре',
+                          subTitle: 'Не списали долг — вернем ваши деньги',
+                  description: 'Мы уверены в результате и закрепляем его юридически: если долг не будет списан по нашей вине — вы получите полный возврат оплаты.'
+                  },
+                 {
+                          title: 'решим проблему с КОЛЛЕКТОРами',
+                          subTitle: 'Берем на себя диалог с коллекторами',
+                  description: 'Выдохните: больше не нужно поднимать неизвестные номера и слушать угрозы.'
+                  },
+                  {
+                          title: 'сохраняем ипотеку',
+                          subTitle: 'Гарантия 99% сохранения ипотеки',
+                  description: 'При процедуре банкротства мы сохраняем Ваше ипотечное жилье.'
+                  },
+                  {
+                          title: 'Без походов по инстанциям',
+                          subTitle: 'связь с юристом в личном кабинете 24/7',
+                  description: 'Удобный онлайн-кабинет позволяет следить за ходом процедуры в любое время.'
+                  },
+                  {
+                          title: 'Гибкие условия оплаты',
+                          subTitle: 'Рассрочка платежа',
+                  description: 'Предлагаем рассрочку на наши услуги на весь период процедуры банкротства.'
+                  },
+                  {
+                          title: 'Профессионализм',
+                          subTitle: 'Мы — юридическая компания ',
+                  description: 'Заключаем официальный договор с чёткими условиями и гарантиями. Никаких серых схем — всё по закону, прозрачно и безопасно.'
+                  },
+                  {
+                          title: 'Более 10 лет',
+                          subTitle: 'Успешной практики',
+                  description: '35 000 дел заверешены успешно и в срок, 31 млрд ₽ — сумма списанных долгов. Все это — реальные цифры, подтвержденные судебными решениями.'
+                  },
+                  ]
+                }"
+            x-intersect.full="mainVisibleSSLCW = true"
+            class="section-swipe-list-command-widget custom-mar-200"
+    >
+        <div
+                x-data="{
+                  textFull: 'МЫ - КОМАНДА\nПРОФЕССИОНАЛОВ',
+                  textFullForMob: 'МЫ - КОМАНДА ПРОФЕССИОНАЛОВ',
+                  textShown: '',
+                  index: 0
+                }"
+                x-init="
                           $watch('mainVisibleSSLCW', value => {
                             if(value) {
                               index = 0;
@@ -721,239 +1348,623 @@
                               index = 0;
                             }
                           })
-                        "
-                        class="main-intro-item"
-                >
-                    <h6
-                            x-data="{ show: false }"
-                            x-init="setTimeout(() => show = true, 0)"
-                            x-show="show"
-                            x-transition:enter="transition ease-out duration-500 delay-700"
-                            x-transition:enter-start="translate-y-56"
-                            x-transition:enter-end="translate-y-0"
-                    >
-                        Сервис по списанию долгов
-                    </h6>
-                    <h1
-                            class="cust-about-h1-title-subtitle"
-                            x-html="textShown"
-                    >
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div
-            x-data="{
-                        widthScrollContainer: 0,
-                        init() {
-                                            setTimeout(() => {
-                                            const container = this.$refs.scroller;
-                                            if (container) {
-                                              this.widthScrollContainer = container.scrollWidth - container.clientWidth;
-                                              console.log('Максимальная ширина прокрутки:', this.widthScrollContainer);
-                                            }
-                                          }, 100);
-                                        },
-                                    scrollHandler(event) {
-                                          const container = this.$refs.scroller;
-                                          const pageY = event.pageY ?? event.clientY; // на случай, если pageY undefined
-
-                                          console.log(container.scrollLeft);
-                                          console.log(window.pageYOffset);
-                                          console.log(pageY);
-                                          console.log(event.deltaY);
-
-                                          // Игнорируем если горизонтальная прокрутка больше вертикальной (вероятно пользователь прокручивает вбок)
-                                          if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-
-                                          // Ограничиваем обработку по вертикальной позиции мыши (пример)
-                                          if (pageY > 2100 && pageY < 11280) {
-                                            if (event.deltaY > 0) {
-                                              container.scrollLeft += event.deltaY + 150;
-                                            } else {
-                                              container.scrollLeft -= (-2.6 * event.deltaY);
-                                            }
-
-                                            // Ограничения по горизонтальному скроллу
-                                            if (pageY < 2100) {
-                                              container.scrollLeft = 200;
-                                            }
-                                            if (pageY > 11280) {
-                                              container.scrollLeft = 3700;
-                                            }
-
-                                            if (
-                                              (event.deltaY > 0 && container.scrollLeft + container.clientWidth < container.scrollWidth) ||
-                                              (event.deltaY < 0 && container.scrollLeft > 0)
-                                            ) {
-                                              event.preventDefault();
-                                            }
-                                          }
-                                        },
-
-                                        scrollHandler2(event) {
-                                          const container = this.$refs.scroller;
-                                          const scrollWidth = container.scrollWidth - container.clientWidth;
-                                          const pageY = event.pageY ?? event.clientY;
-                                          const minScrollDown = 2100;
-                                          const maxScrollDown = 7500;
-                                          const currentPositionInContainer = function() {
-                                            if (pageY > minScrollDown && pageY < maxScrollDown) {
-                                                return pageY - minScrollDown
-                                            }
-                                            if (pageY > maxScrollDown) return maxScrollDown
-                                            if (pageY <= minScrollDown) return 0
-                                          };
-                                          // Игнорируем горизонтальные прокрутки меньше вертикальных
-                                          if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-
-                                          const delta = event.deltaY;
-
-                                          // Процент изменения на основе deltaY и ширины контейнера
-                                          // Коэффициент скорости можно менять (например, 0.2)
-                                          const speedFactor = 7.2;
-
-                                          // Текущее положение прокрутки в процентах от максимума
-                                          const currentPercent = container.scrollLeft / scrollWidth;
-
-                                          // Новый процент прокрутки с учетом направления и скорости
-                                          //let newPercent = currentPercent + (delta * speedFactor) / scrollWidth;
-                                            let newPercent = (currentPositionInContainer() / this.widthScrollContainer);
-
-                                          // Ограничиваем значение от 0 до 1
-                                          newPercent = Math.min(Math.max(newPercent, 0), 1);
-
-                                          // Вычисляем новое значение scrollLeft по проценту
-                                          let newScrollLeft = newPercent * scrollWidth;
-
-                                          // Прокручиваем с плавным поведением
-                                           if (event.pageY < minScrollDown + 100) {
-                                            newScrollLeft = 600
-                                          }
-
-                                          if (newScrollLeft < 600) {
-                                            newScrollLeft = 600
-                                          }
-                                          if (window.innerWidth > 768) {
-                                            container.scrollTo({
-                                            left: newScrollLeft,
-                                            behavior: 'smooth'
-                                          });
-                                          }
-
-                                          // Отменяем стандартный скролл страницы, если прокрутка допустима
-                                          if (
-                                            (delta > 0 && container.scrollLeft + container.clientWidth < container.scrollWidth) ||
-                                            (delta < 0 && container.scrollLeft > 0)
-                                          ) {
-                                            event.preventDefault();
-                                          }
-                                        }
-                                  }"
-            x-init="init()"
-            :style="{
-              height: window.innerWidth <= 768
-                ? '100%'
-                : (widthScrollContainer ? `${widthScrollContainer + 1500}px` : '7000px')
-            }"
-            class="swiper-round-horizantal-scroll-widget"
-    >
-        <div
-                class="HSC-scroll-widget prav-0808-SRHSW-pd"
-
+              "
+                x-intersect.full="mainVisibleSSLCW = true"
+                class="section-SWIPER-list-command-widget-se prav-pad-fromSSLCW-0808"
         >
-            <div
-                    class="horizontal-scroll-container"
-                    x-ref="scroller"
-                    x-on:wheel.prevent.window="scrollHandler2($event)"
-            >
-                <div class="item-circle">
-                    <div class="container-circles">
-                        <div x-data class="container__cir">
-                            <h1>
-                                Команда<br/>
-                                наших юристов
-                            </h1>
-                            <div class="circles">
-                                <div class="item-1">
-                                    <svg width="785" height="884" viewBox="0 0 885 884" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M171.243 790.694C170.807 792.318 171.771 793.988 173.395 794.423C175.019 794.858 176.689 793.894 177.124 792.27C177.559 790.646 176.595 788.977 174.971 788.541C173.347 788.106 171.678 789.07 171.243 790.694ZM454.018 882.77L454.004 882.2L454.018 882.77ZM728.942 777.613L728.572 777.179L728.942 777.613ZM876.425 522.879L875.864 522.774L876.425 522.879ZM830.737 232.097L831.239 231.826L830.737 232.097ZM612.239 34.867L612.02 35.3941L612.239 34.867ZM318.313 19.0899L318.152 18.5424L318.313 19.0899ZM79.9585 191.798L79.4885 191.474L79.9585 191.798ZM0.464967 475.23C0.0297892 476.854 0.993605 478.523 2.61769 478.958C4.24177 479.393 5.91111 478.43 6.34629 476.805C6.78147 475.181 5.81765 473.512 4.19357 473.077C2.56949 472.642 0.900144 473.605 0.464967 475.23ZM174.183 791.482L173.835 791.935C254.006 853.601 352.92 885.869 454.033 883.341L454.018 882.77L454.004 882.2C353.153 884.721 254.495 852.536 174.531 791.03L174.183 791.482ZM454.018 882.77L454.033 883.341C555.145 880.813 652.323 843.643 729.312 778.048L728.942 777.613L728.572 777.179C651.782 842.604 554.855 879.678 454.004 882.2L454.018 882.77ZM728.942 777.613L729.312 778.048C806.302 712.453 858.433 622.411 876.986 522.983L876.425 522.879L875.864 522.774C857.359 621.944 805.362 711.753 728.572 777.179L728.942 777.613ZM876.425 522.879L876.986 522.983C895.54 423.556 879.39 320.772 831.239 231.826L830.737 232.097L830.235 232.369C878.262 321.086 894.37 423.603 875.864 522.774L876.425 522.879ZM830.737 232.097L831.239 231.826C783.087 142.879 705.854 73.1633 612.458 34.3399L612.239 34.867L612.02 35.3941C705.174 74.1171 782.208 143.653 830.235 232.369L830.737 232.097ZM612.239 34.867L612.458 34.3399C519.062 -4.4836 415.167 -10.0603 318.152 18.5424L318.313 19.0899L318.475 19.6375C415.239 -8.89134 518.865 -3.32901 612.02 35.3941L612.239 34.867ZM318.313 19.0899L318.152 18.5424C221.137 47.1452 136.885 108.193 79.4885 191.474L79.9585 191.798L80.4285 192.122C137.676 109.056 221.71 48.1663 318.475 19.6375L318.313 19.0899ZM79.9585 191.798L79.4885 191.474C22.0924 274.755 -4.96704 375.219 2.83651 476.062L3.40563 476.018L3.97475 475.974C-3.80862 375.392 23.1808 275.188 80.4285 192.122L79.9585 191.798Z" fill="#F3EDD8" fill-opacity="0.8"/>
-                                    </svg>
-                                </div>
-                                <div class="item-2">
-                                    <svg width="746" height="846" viewBox="0 0 846 846" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="422.999" cy="423" r="421.706" stroke="#F3EDD8" stroke-opacity="0.8" stroke-width="1.14165" stroke-dasharray="13.39 13.39"/>
-                                    </svg>
-                                </div>
-                                <div class="item-3">
-                                    <svg width="714" height="814" viewBox="0 0 814 814" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M290.192 796.788C290.192 798.47 291.555 799.833 293.237 799.833C294.918 799.833 296.281 798.47 296.281 796.788C296.281 795.107 294.918 793.744 293.237 793.744C291.555 793.744 290.192 795.107 290.192 796.788ZM591.054 768.939L590.795 768.43L591.054 768.939ZM788.992 544.683L789.529 544.876L788.992 544.683ZM568.074 34.2657L567.847 34.7897L568.074 34.2657ZM269.099 25.0834L268.905 24.5465L269.099 25.0834ZM44.9546 223.149L45.4635 223.407L44.9546 223.149ZM17.2736 520.981L17.8215 520.821L17.2736 520.981ZM198.033 756.962C198.033 758.643 199.396 760.006 201.077 760.006C202.758 760.006 204.121 758.643 204.121 756.962C204.121 755.28 202.758 753.917 201.077 753.917C199.396 753.917 198.033 755.28 198.033 756.962ZM293.237 796.788L293.077 797.336C392.416 826.329 499.071 816.355 591.312 769.448L591.054 768.939L590.795 768.43C498.813 815.206 392.457 825.151 293.397 796.24L293.237 796.788ZM591.054 768.939L591.312 769.448C683.554 722.54 754.44 642.229 789.529 544.876L788.992 544.683L788.455 544.489C753.465 641.568 682.777 721.654 590.795 768.43L591.054 768.939ZM788.992 544.683L789.529 544.876C824.618 447.524 821.269 340.455 780.164 245.486L779.641 245.713L779.117 245.94C820.106 340.642 823.445 447.41 788.455 544.489L788.992 544.683ZM779.641 245.713L780.164 245.486C739.06 150.517 663.293 74.7926 568.3 33.7417L568.074 34.2657L567.847 34.7897C662.573 75.7253 738.128 151.237 779.117 245.94L779.641 245.713ZM568.074 34.2657L568.3 33.7417C473.308 -7.30906 366.238 -10.5975 268.905 24.5465L269.099 25.0834L269.293 25.6203C366.352 -9.42502 473.121 -6.14583 567.847 34.7897L568.074 34.2657ZM269.099 25.0834L268.905 24.5465C171.572 59.6904 91.3007 130.622 44.4456 222.89L44.9546 223.149L45.4635 223.407C92.1871 131.398 172.233 60.6656 269.293 25.6203L269.099 25.0834ZM44.9546 223.149L44.4456 222.89C-2.40949 315.158 -12.3227 421.819 16.7258 521.141L17.2736 520.981L17.8215 520.821C-11.1454 421.777 -1.26002 315.416 45.4635 223.407L44.9546 223.149ZM17.2736 520.981L16.7258 521.141C45.7742 620.464 111.599 704.974 200.787 757.454L201.077 756.962L201.366 756.47C112.428 704.137 46.7884 619.864 17.8215 520.821L17.2736 520.981Z" fill="#F3EDD8" fill-opacity="0.8"/>
-                                    </svg>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="item">
-                    <div class="item_cards">
-                        <template x-for="i in 5" :key="i">
-
-                                <div x-data class="container__Cardimg">
-                                    <span x-text="i"></span>
-                                    <div class="cont">
-                                        <div class="photo">
-
-                                        </div>
-                                        <div class="text">
-                                            <h4>
-                                                Имя Фамилия <br/>Отчество
-                                            </h4>
-                                            <p>
-                                                Lorem ipsum dolor sit amet consectetur. Id fermentum mattis ac elementum justo euismod sem.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        </template>
-                    </div>
-                </div>
-
+            <div class="SWLCW-title">
+                <p x-html="textShown"></p>
+            </div>
+            <div class="SWLCW-title-for-mob">
+                <h2 x-html="textFullForMob"></h2>
             </div>
         </div>
-    </div>
-    <div
-            class="GB-section-table-widget prav-0808-page-about-pd-GB-section-table-widget custom-mar-200 mt-5"
-            x-data="{
-                isVisible: false,
-                items: [
-                  { title: 'Карточка 1', text: 'Описание 1' },
-                  { title: 'Карточка 2', text: 'Описание 2' },
-                  { title: 'Карточка 3', text: 'Описание 3' },
-                  { title: 'Карточка 3', text: 'Описание 3' },
-                  { title: 'Карточка 3', text: 'Описание 3' },
-                  { title: 'Карточка 3', text: 'Описание 3' },
-                  { title: 'Карточка 3', text: 'Описание 3' },
-                  { title: 'Карточка 3', text: 'Описание 3' }
-                ],
+        <div
+                class="SWLCW-list"
+        >
+            <template x-for="item in items" :key="item">
+                <div
+                        class="SWLCW-card"
+                        x-show="mainVisibleSSLCW"
+                        x-transition:enter="transition transform ease-out duration-1000 delay-1000"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                >
+                    <div class="title">
+                        <p x-text="item.title"></p>
+                    </div>
+                    <div class="text">
+                        <p x-text="item.title"></p>
+                        <span x-text="item.description"></span>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div class="SWLCW-for-mobile">
+            <div
+                    class="swiper-card-btns"
+                    x-data="{
                 active: 0,
-                visibleCards: 1,
+                mainVisibleSCB: false,
                 maxActive() {
-                  return Math.max(this.items.length - this.visibleCards, 0);
+                  return Math.max(items.length - 1, 0);
                 },
                 next() {
                   if(this.active < this.maxActive()) {
-                      this.active += this.visibleCards;
+                    this.active++;
                   } else {
                     this.active = 0;
                   }
                 },
                 prev() {
                   if(this.active > 0) {
-                    this.active -= this.visibleCards;
+                    this.active--;
+                  } else {
+                    this.active = this.maxActive();
+                  }
+                }
+              }"
+
+            >
+                <div class="SCB-title">
+                    <div class="SCB-nav pr-out">
+                        <div class="SCB-nav-container">
+                            <span>1 из 10</span>
+                            <div
+                                    class="btns-SWLCW SWLCW-btns-btn"
+                            >
+                                <button @click="prev">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
+                                    </svg>
+                                </button>
+                                <button @click="next">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mx-auto relative overflow-hidden">
+                    <div
+                            class="slider-track"
+                            :style="`transform: translateX(-${350 * active}px);`"
+                    >
+                        <template
+                                x-for="(item, idx) in items"
+                                :key="idx"
+                        >
+                            <div
+                                    class="SWLCW-card prav-from-card-profi-1008"
+                                    x-show="mainVisibleSSLCW"
+                                    x-transition:enter="transition transform ease-out duration-1000 delay-1000"
+                                    x-transition:enter-start="opacity-0"
+                                    x-transition:enter-end="opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="opacity-100"
+                                    x-transition:leave-end="opacity-0"
+                            >
+                                <div class="title">
+                                    <p x-text="item.title"></p>
+                                </div>
+                                <div class="text">
+                                    <p x-text="item.title"></p>
+                                    <span x-text="item.description"></span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+            class="GB-section-table-widget prav-pad-0808-GB-section-table-widget mt-5"
+            x-data="{
+                  mainVisibleGBSTW: false,
+                  items: [
+                  {
+                  title: 'Сегодня — Проведем бесплатную консультацию',
+                  text: 'Вы узнаете, как законно избавиться от долгов и какие шаги вас ждут. Уже на этом этапе можно перестать переживать — решение есть.',
+                  data:  '',
+                  subTitle: ''
+                  },
+                  {
+                  title: 'Регистрируетесь в личном кабинете и загружаете документы',
+                  text: 'С этого момента все вопросы с коллекторами, банками и МФО берём на себя. Звонки прекратятся, а вы почувствуете реальное облегчение.',
+                  data: '',
+                  subTitle: ''
+                  },
+                  {
+                  title: 'Уточняем детали и подписываем договор  ',
+                  text: 'Коллекторы и кредиторы теряют право требовать деньги напрямую, все споры переходят в суд. Ваше имущество под защитой закона, а вы — в статусе банкрота, и это начало новой страницы.',
+                  data: '',
+                  subTitle: ''
+                  },
+                  {
+                  title: 'Юристы ведут ваше дело в суде — вы ничего не делаете',
+                  text: 'Вы живёте своей жизнью, а все процедуры, споры и отчёты идут без вашего участия. В этот период мы работаем над полным списанием долгов и сохранением имущества.',
+                  data: '',
+                  subTitle: ''
+                  },
+                  {
+                  title: 'Вы получаете решение — долги списаны, жизнь с чистого листа',
+                  text: 'Вы полностью освобождены от кредитных обязательств, звонков и угроз. Финансовая свобода и новый старт — официально и законно.',
+                  data: '',
+                  subTitle: ''
+                  }
+                ],
+
+                active: 0,
+                maxActive() {
+                  return Math.max(this.items.length - 1, 0);
+                },
+                 getDate(m) {
+                  const now = new Date();
+                  now.setMinutes(now.getMinutes() + m);
+                  const pad = (num) => num.toString().padStart(2, '0');
+
+                  const currentTime = `${pad(now.getHours())}:${pad(now.getMinutes())} ${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()}`;
+                  return currentTime;
+                },
+                next() {
+                  if(this.active < this.maxActive()) {
+                    this.active++;
+                  } else {
+                    this.active = 0;
+                  }
+                },
+                prev() {
+                  if(this.active > 0) {
+                    this.active--;
+                  } else {
+                    this.active = this.maxActive();
+                  }
+                },
+                 init() {
+                this.items[0].data = `${this.getDate(0)}`;
+                this.items[1].data = `5 минут - ${this.getDate(5)}`;
+                this.items[2].data = `1 день - ${this.getDate(1440)}`;
+                this.items[3].data = `до 6 мес - ${this.getDate(262800)}`;
+                this.items[4].data = `${this.getDate(525600)}`;
+              }
+                }"
+            x-init="init()"
+            x-intersect.half="mainVisibleGBSTW = true"
+    >
+        <div class="subTitle custom-container">
+            <div
+                    class="subTitle-title-h"
+                    x-show="mainVisibleGBSTW"
+                    x-transition:enter="transition transform ease-out duration-850 delay-800"
+                    x-transition:enter-start="translate-y-100"
+                    x-transition:enter-end="translate-y-0"
+                    x-transition:leave="none"
+            >
+                <h2
+                >Как это работает?</h2>
+            </div>
+            <div
+                    x-show="mainVisibleGBSTW"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:enter="transition opacity ease-linear duration-800 delay-900"
+                    x-transition:leave="none"
+                    class="el-border-container-an">
+                <div
+                        class="el-border"
+                ></div>
+            </div>
+        </div>
+        <div
+                class="section-table-widget-1 custom-container"
+        >
+            <div class="STW-1-cards">
+                <div
+                        x-show="mainVisibleGBSTW"
+                        x-transition:enter="transition transform ease-out duration-1250 delay-1800"
+                        x-transition:enter-start="-translate-x-450 opacity-0"
+                        x-transition:enter-end="translate-x-0 opacity-100"
+                        x-transition:leave="none"
+                        class="section-item">
+                    <div class="main-info sticky-block">
+                        <h4>
+                            Коллекторы перестанут звонить уже с первого дня обращения!
+                        </h4>
+                        <p>
+                            Оставьте заявку сейчас, и наш юрист ответит на все ваши вопросы.           </p>
+                        <button
+                                class="Btn btn-BColor-yellow"
+                                @click="() => {
+                        isCursorPoupup = false;
+                        showModalFreeCons = true;
+                      }"
+                        >
+                            Записаться на консультацию
+                        </button>
+                    </div>
+                </div>
+                <div class="section-item how-its-works-STW-Large">
+                    <div class="sheet">
+                        <ul>
+                            <template
+                                    x-for="(item, idx) in items"
+                                    :key="idx"
+                            >
+                                <li>
+                                    <div class="sheet-item">
+                      <span
+                              x-show="mainVisibleGBSTW"
+                              x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                              x-transition:enter-start="translate-x-550 opacity-0"
+                              x-transition:enter-end="translate-x-0 opacity-100"
+                              x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                              x-transition:leave-start="translate-x-0 opacity-100"
+                              x-transition:leave-end="translate-x-0 opacity-0"
+                              x-text="`0${idx}`"
+                      ></span>
+                                        <div
+                                                x-show="mainVisibleGBSTW"
+                                                x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                                                x-transition:enter-start="translate-x-550 opacity-0"
+                                                x-transition:enter-end="translate-x-0 opacity-100"
+                                                x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                                x-transition:leave-start="translate-x-0 opacity-100"
+                                                x-transition:leave-end="translate-x-0 opacity-0"
+                                                class="desc">
+                                            <p
+                                                    x-show="mainVisibleGBSTW"
+                                                    x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                                    x-text="item.title"
+                                            ></p>
+                                            <span
+                                                    class="data"
+                                                    x-show="mainVisibleGBSTW"
+                                                    x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                                    x-text="item.data"
+                                            >
+                        </span>
+                                            <span
+                                                    x-show="mainVisibleGBSTW"
+                                                    x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                                                    x-transition:enter-start="translate-x-550 opacity-0"
+                                                    x-transition:enter-end="translate-x-0 opacity-100"
+                                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                                    x-transition:leave-start="translate-x-0 opacity-100"
+                                                    x-transition:leave-end="translate-x-0 opacity-0"
+                                                    x-text="item.text"
+                                            >
+                        </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                            x-show="mainVisibleGBSTW"
+                                            x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                                            x-transition:enter-start="translate-x-550 opacity-0"
+                                            x-transition:enter-end="translate-x-0 opacity-100"
+                                            x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                            x-transition:leave-start="translate-x-0 opacity-100"
+                                            x-transition:leave-end="translate-x-0 opacity-0"
+                                            class="el-border-container-an">
+                                        <div
+                                                class="el-border"></div>
+                                    </div>
+
+                                </li>
+                            </template>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="STW-1-cards-HIW-STW-Larde-mobile">
+                <div class="mx-auto relative overflow-hidden">
+                    <div
+                            class="slider-track"
+                            :style="`transform: translateX(-${370 * active}px);`"
+                    >
+                        <template
+                                x-for="(item, idx) in items"
+                                :key="idx"
+                        >
+                            <div
+                                    class="SWLCW-card"
+                                    x-show="mainVisibleGBSTW"
+                                    x-transition:enter="transition transform ease-out duration-1000 delay-1000"
+                                    x-transition:enter-start="opacity-0"
+                                    x-transition:enter-end="opacity-100"
+                                    x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
+                                    x-transition:leave-start="opacity-100"
+                                    x-transition:leave-end="opacity-0"
+                            >
+                                <div class="SWCLW-C-content">
+                                    <div class="SWCLCW-C-item">
+                                        <span x-text="`0${idx}`"></span>
+                                    </div>
+                                    <div class="SWCLCW-C-item">
+                                        <h4 x-text="item.title"></h4>
+                                        <span x-text="item.data"></span>
+                                        <p x-text="item.text">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <div
+                        class="btns-SWLCW SWLCW-btns-btn"
+                >
+                    <button @click="prev">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
+                        </svg>
+                    </button>
+                    <button @click="next">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+            class="swiper-card-btns custom-mar-200"
+            x-data="{
+                active: 0,
+                mainVisibleSCB: false,
+                cards: [
+                  { title: 'Списано 1 900 000 ₽', name: 'Иванов Иван Иванович', num: 'А00-00000/2025', banks: ['Сбербанк', 'Альфа-банк', 'Т-банк', 'Совкомбанк'] },
+                  { title: 'Списано 1 900 000 ₽', name: 'Иванов Иван Иванович', num: 'А00-00000/2025', banks: ['Сбербанк', 'Альфа-банк', 'Т-банк', 'Совкомбанк'] },
+                  { title: 'Списано 1 900 000 ₽', name: 'Иванов Иван Иванович', num: 'А00-00000/2025', banks: ['Сбербанк', 'Альфа-банк', 'Т-банк', 'Совкомбанк'] },
+                ],
+
+                maxActive() {
+                  return Math.max(this.cards.length - 1, 0);
+                },
+                next() {
+                  if(this.active < this.maxActive()) {
+                    this.active++;
+                  } else {
+                    this.active = 0;
+                  }
+                },
+                prev() {
+                  if(this.active > 0) {
+                    this.active--;
+                  } else {
+                    this.active = this.maxActive();
+                  }
+                }
+              }"
+            x-intersect.half="mainVisibleSCB = true"
+    >
+        <div class="SCB-title custom-container">
+            <div
+                    x-show="mainVisibleSCB"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:enter="transition opacity ease-linear duration-860 delay-900"
+                    x-transition:leave="none"
+                    class="el-border-SCB"
+            ></div>
+            <div class="SCB-nav pr-in">
+                <div class="SCB-nav-container">
+                    <h6
+                            x-show="mainVisibleSCB"
+                            x-transition:enter="transition transform ease-out duration-850 delay-800"
+                            x-transition:enter-start="translate-y-100"
+                            x-transition:enter-end="translate-y-0"
+                            x-transition:leave="none"
+                    >Завершенные дела</h6>
+                </div>
+
+                <div
+                        x-show="mainVisibleSCB"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:enter="transition opacity ease-linear duration-400 delay-2000"
+                        x-transition:leave="none"
+                        class="btns-SCB btns-SCB-DEK"
+                >
+                    <button @click="prev">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
+                        </svg>
+                    </button>
+                    <button @click="next">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto relative overflow-hidden">
+            <div
+                    class="slider-track"
+                    :style="`transform: translateX(-${358 * active}px);`"
+                    :style="
+                  window.innerWidth >= 768 ? `transform: translateX(-${800 * active}px);` : `transform: translateX(-${358 * active}px);`"
+            >
+                <template
+                        x-for="(card, idx) in cards"
+                        :key="idx"
+                >
+                    <div
+                            x-show="mainVisibleSCB"
+                            x-transition:enter="'transition transform ease-out duration-850 delay-' + ((idx * 100) + 1000) + 'ms'"
+                            x-transition:enter-start="translate-x-1600"
+                            x-transition:enter-end="translate-x-0"
+                            x-transition:leave="none"
+                            class="slider-card"
+                    >
+                        <div class="content-SC">
+                            <div class="card-con">
+                                <h4 x-text="card.title"></h4>
+                                <div class="text-SCB">
+                                    <span x-text="card.num"></span>
+                                    <span x-text="card.name"></span>
+                                </div>
+                                <div class="btns">
+                                    <span>Список кредитов</span>
+                                    <div class="listBtns">
+                                        <template
+                                                x-for="(bank, bankidx) in card.banks"
+                                                :key="bankidx"
+                                        >
+                                            <button x-text="bank"></button>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-con">
+                                <button>
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 1L17 17M17 1V9V17M17 17H1" stroke="#F3EDD8"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="SCB-mob-btn">
+            <div
+                    x-show="mainVisibleSCB"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:enter="transition opacity ease-linear duration-400 delay-2000"
+                    x-transition:leave="none"
+                    class="btns-SCB1208 btns-SCB-MOB"
+            >
+                <button @click="prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
+                    </svg>
+                </button>
+                <button @click="next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div
+            x-data="{
+                mainVisibleSIW: false
+              }"
+            x-intersect.half="mainVisibleSIW = true"
+            class="swiper-img-widget"
+    >
+        <div class="SIW-container">
+            <div class="SIW-title">
+                <div
+                        x-show="mainVisibleSIW"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:enter="transition opacity ease-linear duration-860 delay-900"
+                        x-transition:leave="none"
+                        class="el-border-SIW"
+                ></div>
+                <div
+                        x-show="mainVisibleSIW"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:enter="transition opacity ease-linear duration-400 delay-900"
+                        x-transition:leave="none"
+                        class="SIW-container"
+                >
+                    <h6>видео-отзывы</h6>
+                </div>
+            </div>
+            <div
+                    x-data="{
+                  cards: [
+                          { title: 'Карточка 1', text: 'Описание 1' },
+                          { title: 'Карточка 2', text: 'Описание 2' },
+                          { title: 'Карточка 3', text: 'Описание 3' },
+                          { title: 'Карточка 4', text: 'Описание 4' },
+                          { title: 'Карточка 5', text: 'Описание 5' },
+                          { title: 'Карточка 6', text: 'Описание 6' },
+                          { title: 'Карточка 7', text: 'Описание 7' },
+                          { title: 'Карточка 8', text: 'Описание 8' }
+                        ],
+                        scrollStep: 320,
+                        scrollNext() {
+                          this.$refs.slider.scrollBy({ left: this.scrollStep, behavior: 'smooth' });
+                        },
+                        scrollPrev() {
+                          this.$refs.slider.scrollBy({ left: -this.scrollStep, behavior: 'smooth' });
+                        }
+                  }
+                  "
+                    class="cards cards_video"
+            >
+                <div class=" mx-auto space-y-4">
+                    <div class="scroll-slider" x-ref="slider">
+                        <template x-for="(card, idx) in cards" :key="idx">
+                            <div
+                                    x-show="mainVisibleSIW"
+                                    x-transition:enter="'transition transform ease-out duration-850 delay-' + ((idx * 100) + 1400)"
+                                    x-transition:enter-start="translate-y-600"
+                                    x-transition:enter-end="translate-y-0"
+                                    x-transition:leave="none"
+                                    class="card"
+                            >
+                                <img src="./assets/avatar_vertical-Bn8EoBi-.png">
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+            class="GB-section-table-widget prav-main-page-pad-chem-ja-res-00808 mt-5 custom-container custom-mar-200"
+            x-data="{
+                active: 0,
+                isVisible: false,
+                cards: [
+                  { title: 'Судебные иски, приставы, штрафы', text: 'Банки и МФО подают в суд, а после — дело передаётся приставам. Они могут арестовать счета, удерживать зарплату и начислять штрафы, увеличивая сумму долга в разы.' },
+                  { title: 'Потеря жилья, авто и других активов', text: 'Суд может взыскать ваше имущество — включая автомобили, недвижимость и ценные вещи.' },
+                  { title: 'Арест счетов и вычеты из зарплаты', text: ' Приставы могут списывать деньги с банковских счетов и части зарплаты без предупреждения.' },
+                  { title: 'Коллекторский прессинг', text: 'Постоянные звонки, угрозы, визиты коллекторов — стресс, который влияет на здоровье и жизнь ваших близких.' },
+                  { title: 'Порча кредитной истории и запрет на выезд за границу', text: 'Из-за долгов портится кредитная история — в будущем вы не сможете взять кредит, ипотеку или оформить рассрочку . Также может быть наложен запрет на выезд за границу, пока долг не будет погашен.' },
+                  { title: 'Риски уголовной ответственности при накоплении долгов', text: 'Если долго не платить по обязательствам, это может расцениваться как уклонение от уплаты долгов. В отдельных случаях применяется уголовная статья (ст. 177 УК РФ) — вплоть до штрафов и лишения свободы.' },
+                ],
+                maxActive() {
+                  return Math.max(this.cards.length - 1, 0);
+                },
+                next() {
+                  if(this.active < this.maxActive()) {
+                    this.active++;
+                  } else {
+                    this.active = 0;
+                  }
+                },
+                prev() {
+                  if(this.active > 0) {
+                    this.active--;
                   } else {
                     this.active = this.maxActive();
                   }
@@ -961,7 +1972,7 @@
               }"
             x-intersect.full="isVisible = true"
     >
-        <div class="subTitle custom-container">
+        <div class="subTitle">
             <div
                     x-show="isVisible"
                     x-transition:enter="transition transform ease-out duration-850 delay-600"
@@ -969,9 +1980,9 @@
                     x-transition:enter-end="translate-y-0"
                     x-transition:leave="none"
                     class="GBSTW-h">
-                <h3>
+                <h1>
                     ЧЕМ Я РИСКУЮ, ЕСЛИ НЕ НАЧНУ СЕЙЧАС?
-                </h3>
+                </h1>
             </div>
             <div
                     x-show="isVisible"
@@ -981,14 +1992,14 @@
                     x-transition:leave="none"
             >
                 <div
-                        class="el-border pr-about"
+                        class="el-border"
                 ></div>
             </div>
 
         </div>
-        <div class="section-table-widget-1 custom-container">
-            <div class="STW-1-cards">
-                <div class="section-item section-item-NONF1">
+        <div class="section-table-widget-1">
+            <div class="STW-1-cards ind-prav-col-nor">
+                <div class="section-item">
                     <div
                             x-show="isVisible"
                             x-transition:enter="transition transform ease-out duration-450 delay-600"
@@ -1003,12 +2014,18 @@
                         <p>
                             Игнорирование долгов и звонков кредиторов ведет к серьёзным и необратимым последствиям! Получите бесплатную консультацию прямо сейчас!
                         </p>
-                        <button class="Btn btn-BColor-yellow">
+                        <button
+                                class="Btn btn-BColor-yellow"
+                                @click="() => {
+                        isCursorPoupup = false;
+                        showModalFreeCons = true;
+                      }"
+                        >
                             Бесплатная консультация
                         </button>
                     </div>
                 </div>
-                <div class="section-item how-its-works-STW-Large">
+                <div class="section-item STW-1-1732 how-its-works-STW-Large">
                     <div class="sheet">
                         <ul>
                             <li>
@@ -1187,11 +2204,11 @@
                     <div class="mx-auto relative overflow-hidden">
                         <div
                                 class="slider-track"
-                                :style="`transform: translateX(-${380 * active}px);`"
+                                :style="`transform: translateX(-${370 * active}px);`"
                         >
                             <template
-                                    x-for="(item, idx) in items"
-                                    :key="idx"
+                                    x-for="(item, idxCard) in cards"
+                                    :key="idxCard"
                             >
                                 <div
                                         class="SWLCW-card"
@@ -1205,12 +2222,12 @@
                                 >
                                     <div class="SWCLW-C-content">
                                         <div class="SWCLCW-C-item">
-                                            <span x-text="`0${idx + 1}`"></span>
+                                            <span x-text="`0${idxCard + 1}`"></span>
                                         </div>
                                         <div class="SWCLCW-C-item">
-                                            <h4>Сегодня — Проведем бесплатную консультацию</h4>
+                                            <h4 x-text="item.title">Сегодня — Проведем бесплатную консультацию</h4>
 
-                                            <p>
+                                            <p x-text="item.text">
                                                 Вы узнаете, как законно избавиться от долгов и какие шаги вас ждут. Уже на этом этапе можно перестать переживать — решение есть.
                                             </p>
                                         </div>
@@ -1237,137 +2254,85 @@
             </div>
         </div>
     </div>
-    <div class="cards-colors-yellow-widget prav-0808-page-about-orange-cards">
-        <div
-                x-data="scrollCards()"
-                x-init="init()"
-                @wheel.window.prevent="onWheel($event)"
-                class="CCYW-cards"
-        >
-            <template x-for="(section, index) in sections" :key="index">
-                <div
-                        class="section-item"
-                        x-transition:enter="transition ease-out duration-700"
-                        x-transition:enter-start="transform translate-y-150"
-                        x-transition:enter-end="transform translate-y-0"
-                        x-transition:leave="transition ease-in duration-700"
-                        x-transition:leave-start="transform translate-y-0"
-                        x-transition:leave-end="transform -translate-y-150"
-                        style="position: sticky; width: 100%;"
-                >
-                    <div class="title">
-                        <div class="t-item txt-top">
-                            <span x-text="section.span"></span>
-                            <h3 x-text="section.title"></h3>
-                        </div>
-                        <div class="t-item">
-                            <p x-text="section.description"></p>
-                            <button>Узнать больше</button>
-                        </div>
-                    </div>
-                    <div class="photo">
-                        <!-- Фото можно добавить сюда -->
-                    </div>
-                </div>
-            </template>
+    <div
+            x-intersect.full="isVisible = true"
+            class="section-accardion-list"
+            x-data="{cards: [
+                {title: 'У меня отберут все имущество?', text: 'Нет. Закон защищает единственное жильё (если оно не в ипотеке), личные вещи, бытовую технику и предметы первой необходимости.'},
+                {title: 'Будут ли у меня проблемы с работой?', text: 'Нет. Банкротство не влияет на трудоустройство и не ограничивает вас в выборе профессии.'},
+                {title: 'Смогу ли я признать себя банкротом повторно?', text: 'Да, но не раньше чем через 5 лет после завершения процедуры.'},
+                {title: 'Мне больше не дадут кредит после банкротства?', text: 'Кредиты будут доступны, но банки могут устанавливать повышенные ставки или запрашивать залог.'},
+                {title: 'Что будет с долгами после банкротства?', text: 'Все списываемые долги будут полностью аннулированы, взыскания и аресты прекратятся.'},
+                {title: 'Нужно ли будет ходить в суд?', text: 'Нет. Все вопросы берёт на себя юрист — от подготовки документов до представления ваших интересов в суде.'},
+                {title: 'Могут ли отказать в банкротстве?', text: 'Если долг больше 500 000 ₽ и просрочка более 90 дней — шансов на отказ почти нет.'},
+                {title: 'Можно ли списать долги перед государством?', text: 'Да. Налоги, штрафы и судебные взыскания также попадают под процедуру банкротства.'},
+                {title: 'Какие документы нужны для подачи на банкротство?', text: 'Паспорт, ИНН, СНИЛС и кредитные договоры. Остальное соберёт юрист.'},
+                {title: 'Можно ли сохранить квартиру и машину?', text: 'Да, закон защищает ваше единственное жилье. Машину можно сохранить с помощью реструктуризации долга.'},
+                {title: 'Что если не списали долги?', text: 'Мы возвращаем 200% от оплаченной суммы — гарантия в договоре.'},
+                {title: 'Сколько длится процедура?', text: 'От 3 до 8 месяцев — в зависимости от ситуации.'},
+                {title: 'Что делать, если коллекторы звонят ежедневно?', text: 'С момента обращения к нам звонки и угрозы прекратятся — мы берем на себя общение с кредиторами.'},
+                {title: 'Будут ли ограничения после банкротства?', text: 'Некоторые ограничения есть, но они не мешают жить полноценно и строить будущее. Пример рекламного текста для соцсетей или контекстной рекламы'}
+              ] , isVisible: false}"
+    >
+        <div class="custom-container">
+            <div
+                    x-show="isVisible"
+                    x-transition:enter="transition transform ease-out duration-950 delay-500"
+                    x-transition:enter-start="translate-x-550 opacity-0"
+                    x-transition:enter-end="translate-x-0 opacity-100"
+                    x-transition:leave="none"
+                    class="el-border"></div>
         </div>
-
-        <script>
-            function scrollCards() {
-                return {
-                    currentIndex: 0,
-                    sections: [
-                        {
-                            span: 'Начните банкротство сейчас, пока закон не ужесточился и вы не потеряли контроль!',
-                            title: 'Банкротство физлиц',
-                            description: 'Более 35 000 успешных дел и 31 миллиард рублей списанных долгов — опыт и гарантия результата.'
-                        },
-                        {
-                            span: 'В нашем личном кабинете вы можете легко и удобно управлять процессом банкротства.',
-                            title: 'Личный кабинет',
-                            description: 'Бесплатная консультация и сбор документов онлайн — без лишних визитов и бюрократии.'
-                        },
-                        {
-                            span: 'Мы предлагаем выгодные условия сотрудничества и прозрачную систему вознаграждений.',
-                            title: 'Партнерская программа',
-                            description: 'Получайте доход за привлечение клиентов, которые нуждаются в услугах по банкротству.'
-                        },
-                        {
-                            span: 'Нововведения в законе, опыт предыдущих дел, с чем нужно быть внимательным.',
-                            title: 'Статьи',
-                            description: 'Делимся опытом и актуальными новостями в области банкротства и финансов.'
-                        },
-                    ],
-                    init() {
-
-                    },
-                    // onWheel(event) {
-                    //     if(event.deltaY > 0) {
-                    //         // Скролл вниз — переключить на следующий слайд
-                    //         this.currentIndex = (this.currentIndex + 1) % this.sections.length;
-                    //     } else {
-                    //         // Скролл вверх — переключить на предыдущий слайд
-                    //         this.currentIndex = (this.currentIndex - 1 + this.sections.length) % this.sections.length;
-                    //     }
-                    // }
-                }
-            }
-        </script>
-    </div>
-    <div class="cards-trhee-contacts-pageAbout-widget prav-0808-page-about-cards-trhee-contacts-pageAbout-widget custom-mar-200">
-        <div class="CTCPaW-cards">
-            <div class="CTCPaW-item">
-                <div class="title">
-                    <h3>Наше сообщество в telegram</h3>
-                    <p>
-                        ледите за важными событиями и получите возможность задать любые вопросы юристам в чате.
-                    </p>
-                </div>
-                <div class="subtitle">
-                    <h4>Присоединяйтесь к нашему сообществу в telegram</h4>
-                    <div class="CTCPaW-card-btn">
-                        <button>
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L17 17M17 1V9V17M17 17H1" stroke="#F3EDD8"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+        <div class="SAL-section-content">
+            <div class="SAL-title">
+                <h6
+                        x-transition:enter="transition transform ease-out duration-1250 delay-600"
+                        x-transition:enter-start="translate-y-100 opacity-0"
+                        x-transition:enter-end="translate-y-0 opacity-100"
+                        x-transition:leave="none"
+                >часто задаваемые вопросы</h6>
             </div>
-            <div class="CTCPaW-item">
-                <div class="title">
-                    <h3>Наше сообщество в telegram</h3>
-                    <p>
-                        ледите за важными событиями и получите возможность задать любые вопросы юристам в чате.
-                    </p>
-                </div>
-                <div class="subtitle">
-                    <h4>Присоединяйтесь к нашему сообществу в telegram</h4>
-                    <div class="CTCPaW-card-btn">
-                        <button>
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L17 17M17 1V9V17M17 17H1" stroke="#F3EDD8"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="CTCPaW-item">
-                <div class="title">
-                    <h3>Наше сообщество в telegram</h3>
-                    <p>
-                        ледите за важными событиями и получите возможность задать любые вопросы юристам в чате.
-                    </p>
-                </div>
-                <div class="subtitle">
-                    <h4>Присоединяйтесь к нашему сообществу в telegram</h4>
-                    <div class="CTCPaW-card-btn">
-                        <button>
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L17 17M17 1V9V17M17 17H1" stroke="#F3EDD8"/>
-                            </svg>
-                        </button>
-                    </div>
+            <div class="SAL-list">
+                <div x-data="{ openPanels: [1] }" class="accordion">
+
+                    <template x-for="(item, idx) in cards">
+                        <div
+                                x-show="isVisible"
+                                x-transition:enter="transition transform ease-out duration-1250 delay-900"
+                                x-transition:enter-start="translate-x-550 opacity-0"
+                                x-transition:enter-end="translate-x-0 opacity-100"
+                                x-transition:leave="none"
+                                class="accordion-item" >
+                            <h2 class="accordion-header" :id="`heading${idx + 1}`">
+                                <button
+                                        class="accordion-button"
+                                        :class="{ 'collapsed': !openPanels.includes(idx + 1) }"
+                                        @click="if(openPanels.includes(idx + 1)) { openPanels = openPanels.filter(i => i !== idx + 1) } else { openPanels.push(idx + 1) }"
+                                        type="button"
+                                        aria-expanded="true"
+                                        :aria-controls="`heading${idx + 1}`"
+                                        x-text="item.title"
+                                >
+                                </button>
+                            </h2>
+                            <div
+                                    :id="`t${idx + 1}`"
+                                    id="collapseOne"
+                                    class="accordion-collapse"
+                                    x-show="openPanels.includes(idx + 1)"
+                                    x-transition
+                                    :aria-labelledby="`t${idx + 1}`"
+                            >
+                                <div class="accordion-body">
+                                    <p x-text="item.text"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+
+
+
                 </div>
             </div>
         </div>
@@ -1604,17 +2569,17 @@
                                         </clipPath><clipPath id="bgblur_1_2126_4190_clip_path" transform="translate(-33.5669 -25.5829)"><path d="M57.4597 31.4162V39.9006C57.4596 43.4477 56.4033 46.6705 54.2849 49.5783C52.1854 52.4601 49.538 54.3019 46.3386 55.1252C43.1395 54.3019 40.4927 52.4598 38.3933 49.5783C36.2749 46.6705 35.2176 43.4477 35.2175 39.9006V31.4162L46.3386 27.256L57.4597 31.4162Z"/>
                                     </clipPath></defs>
                                 </svg>
-
+    
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="FC-text">
-                    <span>О компании</span>
-                    <span>Банкровство юрлиц</span>
-                    <span>Стать партнером</span>
-                    <span>Блог</span>
-                    <span>Контакты</span>
+                    <a href="./">О компании</a>
+                    <a href="./about">Банкровство юрлиц</a>
+                    <a href="./partner-program">Стать партнером</a>
+                    <a href="./blog">Блог</a>
+                    <a href="./contacts">Контакты</a>
                 </div>
             </div>
             <div class="FC-item col-xl-3 col-lg-3 col-md-6 col-sm-12">
@@ -1624,7 +2589,7 @@
                                 class="btn-BColor-grey"
                         >
                             <svg
-
+    
                                     width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         class="path"
@@ -1635,7 +2600,7 @@
                         <button
                                 class="btn-BColor-grey">
                             <svg
-
+    
                                     width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         class="path"
@@ -1644,7 +2609,7 @@
                             </svg>
                         </button>
                         <button
-
+    
                                 class="btn-BColor-grey">
                             <svg
                                     width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1687,7 +2652,11 @@
                 </div>
             </div>
             <div class="FC-item-map col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                <div class="map"></div>
+                <div class="map">
+                    <div class="m" style="position:relative;overflow:hidden;">
+                        <a href="https://yandex.ru/maps/1107/anapa/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Анапа</a>
+                        <a href="https://yandex.ru/maps/1107/anapa/stops/1543264071/?ll=37.331714%2C44.900995&tab=overview&utm_medium=mapframe&utm_source=maps&z=16.4" style="color:#eee;font-size:12px;position:absolute;top:14px;">Школа № 5 — Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/?ll=37.331714%2C44.900995&masstransit%5BstopId%5D=1543264071&mode=masstransit&tab=overview&z=16.4" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+                </div>
             </div>
         </div>
         <div
@@ -1708,7 +2677,6 @@
                 <p class="el-adress">Разработано в MaPbiz Group</p>
             </div>
         </div>
-    </footer>
-</div>
+    </footer></div>
 </body>
 </html>
