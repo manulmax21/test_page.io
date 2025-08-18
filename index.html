@@ -7,9 +7,9 @@
   <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   <title>Vite + TS</title>
-  <script type="module" crossorigin src="./assets/mainIntro-CseRcXBX.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-BR2_SWCd.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-DZyi1shg.css">
+  <script type="module" crossorigin src="./assets/mainIntro-BymyGYLu.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget-UvxIRDR8.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-CAy1PtXi.css">
   <link rel="stylesheet" crossorigin href="./assets/cardWidget-U-PYZqUh.css">
   <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-CpOgRmw9.css">
 </head>
@@ -796,6 +796,7 @@
                                           const container = this.$refs.scroller;
                                           const scrollWidth = container.scrollWidth - container.clientWidth;
                                           const pageY = event.pageY ?? event.clientY;
+                                          const pageX = window.innerWidth ;
                                           const minScrollDown = 2100;
                                           const maxScrollDown = 7500;
                                           const currentPositionInContainer = function() {
@@ -828,14 +829,15 @@
                                           let newScrollLeft = newPercent * scrollWidth;
 
                                           // Прокручиваем с плавным поведением
-                                           if (event.pageY < minScrollDown + 100) {
+                                           if (event.pageY < minScrollDown + 100 && pageX < 2200) {
                                             newScrollLeft = 600
                                           }
-
-                                          if (newScrollLeft < 600) {
+                                          if (newScrollLeft < 600 && pageX < 2200) {
                                             newScrollLeft = 600
                                           }
-                                          console.log(newScrollLeft)
+                                          if ((event.pageY < minScrollDown + 100 || newScrollLeft < 900) && pageX > 2200) {
+                                            newScrollLeft = 800
+                                          }
                                           if (window.innerWidth > 768) {
                                             container.scrollTo({
                                             left: newScrollLeft,
