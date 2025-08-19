@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <title>Юпитер</title>
-  <script type="module" crossorigin src="./assets/mainIntro-CsrcPNDz.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidgetItem-ewwk9fdL.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-Dy5zZxYv.css">
-  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-XYSmfbP6.css">
+  <script type="module" crossorigin src="./assets/mainIntro-IKpuwERY.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidgetItem-BMLSAGUH.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-BQqjNPXx.css">
+  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-DO2CtYZF.css">
 </head>
 <body>
 <div
@@ -20,7 +20,8 @@
                 showModalFreeCons: false,
                 showModalExit: false,
                 showModalCursor: false,
-                isCursorPoupup: true
+                isCursorPoupup: true,
+                alertThanksShow: false
             }"
         id="app"
 >
@@ -298,9 +299,9 @@
                 @click="if (!isVisible) isVisible = true"
                 @mouseenter="posCur = true"
                 @mouseleave="posCur = false"
-                @click.away="isVisible = false"
         >
             <div
+                    @click.outside="isVisible = false"
                     x-data="{
                       scrollPosition: 0,
                       animationClass: ''
@@ -459,7 +460,7 @@
                     </div>
                 </div>
                 <div class="contacts-item">
-                    <div class="contact-icon">
+                    <div class="contact-icon contact-icon-r">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_1_2" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="2" y="2" width="16" height="16">
                                 <path d="M17.8588 10.0051C17.8588 5.66571 14.3411 2.14795 10.0017 2.14795C5.66229 2.14795 2.14453 5.66571 2.14453 10.0051C2.14453 14.3445 5.66229 17.8622 10.0017 17.8622C14.3411 17.8622 17.8588 14.3445 17.8588 10.0051Z" fill="white"/>
@@ -485,7 +486,15 @@
             </div>
         </div>
     </div>
-    <div
+    <div x-show="alertThanksShow" class="alertThanks">
+      <div>
+        <div class="title">
+          <h4>Спасибо за заявку!</h4>
+          <p>Наш менеджер скоро свяжется с вами!</p>
+        </div>
+        <button @click="alertThanksShow = false">Закрыть</button>
+      </div>
+    </div>    <div
             class="main-intro largePagePrav_fromVideo"
     >
         <div class="animated-circles-from-main-intro">
@@ -626,9 +635,20 @@
                         </span>
                     </div>
                     <div class="FC-form-item">
-                        <div class="inp">
+                        <script src="https://unpkg.com/imask"></script>
+                        <div
+                                x-data x-init="
+                            phoneMask = IMask($refs.phoneInput, {
+                                mask: '+{7} (000) 000-00-00'
+                            })
+                        "
+                                class="inp">
                             <input placeholder="Имя*" type="text"/>
-                            <input placeholder="Телефон*" type="text"/>
+                            <input
+                                    x-ref="phoneInput"
+                                    x-model="phone"
+                                    autocomplete="off"
+                                    placeholder="Телефон*" type="text"/>
                         </div>
                         <div class="pol-kon">
                             <label class="custom-checkbox-MY">
@@ -640,7 +660,7 @@
                             <span>Согласен с обработкой персональных данных согласно политики конфиденциальности</span>
                         </div>
                         <div class="FC-form-btn">
-                            <button>
+                            <button @click="alertThanksShow=true">
                                 Отправить заявку
                             </button>
                         </div>
@@ -1090,12 +1110,22 @@
                                 Предварительно - ваши долги могут быть списаны с помощью процедуры банкротства! Наш юрист свяжется с вами, проведет бесплатную консультацию и назовет точную стоимость
                             </p>
                         </div>
-                        <div class="text-item btns inps-form g-3 mt-2">
+                        <script src="https://unpkg.com/imask"></script>
+                        <div
+                                x-data x-init="
+                                    phoneMask = IMask($refs.phoneInput, {
+                                        mask: '+{7} (000) 000-00-00'
+                                    })
+                                "
+                                class="text-item btns inps-form g-3 mt-2">
                             <input
                                     type="text"
                                     placeholder="Имя*"
                             />
                             <input
+                                    x-ref="phoneInput"
+                                    x-model="phone"
+                                    autocomplete="off"
                                     type="text"
                                     placeholder="Телефон*"
                             />
@@ -1117,7 +1147,7 @@
                                 :class="stateQuestion > 1 ? 'b-forward' : 'b-back'"
                         >Назад</button>
                         <button
-                                @click="nextQ()"
+                                @click="stateQuestion < 5 ? nextQ() : alertThanksShow = true"
                                 class=" col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                                 :class="stateQuestion > questions.length ? 'b-back' : 'b-forward'"
                                 x-text="stateQuestion === 5 ? 'Оставить заявку' : 'Далее' "
@@ -1146,7 +1176,7 @@
                     </svg>
                 </span>
                 <div class="pdfPopup-content">
-                    <img src="./assets/order-DUcXv_i3.png" alt="PDF preview" />
+                    <img src="./assets/order.png" alt="PDF preview" />
                 </div>
             </div>
         </div>        <div
@@ -1454,16 +1484,16 @@
                 <div class="SCB-title">
                     <div class="SCB-nav pr-out">
                         <div class="SCB-nav-container">
-                            <span>1 из 10</span>
+                            <span x-text="`${active + 1} из ${items.length}`"></span>
                             <div
                                     class="btns-SWLCW SWLCW-btns-btn"
                             >
-                                <button @click="prev">
+                                <button class="strel_prav" @click="prev">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
                                     </svg>
                                 </button>
-                                <button @click="next">
+                                <button class="strel_prav" @click="next">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
                                     </svg>
@@ -1475,7 +1505,7 @@
                 <div class="mx-auto relative overflow-hidden">
                     <div
                             class="slider-track"
-                            :style="`transform: translateX(-${340 * active}px);`"
+                            :style="`transform: translateX(-${345 * active}px);`"
                     >
                         <template
                                 x-for="(item, idx) in items"
@@ -1648,7 +1678,7 @@
                               x-transition:leave="transition transform ease-in duration-400 opacity ease-in duration-100"
                               x-transition:leave-start="translate-x-0 opacity-100"
                               x-transition:leave-end="translate-x-0 opacity-0"
-                              x-text="`0${idx}`"
+                              x-text="`0${idx + 1}`"
                       ></span>
                                         <div
                                                 x-show="mainVisibleGBSTW"
@@ -1752,12 +1782,12 @@
                 <div
                         class="btns-SWLCW SWLCW-btns-btn"
                 >
-                    <button @click="prev">
+                    <button class="strel_prav" @click="prev">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
                         </svg>
                     </button>
-                    <button @click="next">
+                    <button class="strel_prav" @click="next">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
                         </svg>
@@ -1902,7 +1932,7 @@
                         </svg>
                     </span>
                     <div class="pdfPopup-content">
-                        <img src="./assets/order-DUcXv_i3.png" alt="PDF preview" />
+                        <img src="./assets/order.png" alt="PDF preview" />
                     </div>
                 </div>
             </div>        </div>
@@ -1915,12 +1945,12 @@
                     x-transition:leave="none"
                     class="btns-SCB1208 btns-SCB-MOB"
             >
-                <button @click="prev">
+                <button class="strel_prav" @click="prev">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
                     </svg>
                 </button>
-                <button @click="next">
+                <button class="strel_prav" @click="next">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
                     </svg>
@@ -2351,12 +2381,12 @@
                     <div
                             class="btns-SWLCW SWLCW-btns-btn"
                     >
-                        <button @click="prev">
+                        <button class="strel_prav" @click="prev">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M23.2039 11.8135L0.796113 11.8135M12 23.0173L6.39805 17.4154L0.796113 11.8135M0.796113 11.8135L12 0.609603" stroke="#AAAAAA" stroke-width="0.990292"/>
                             </svg>
                         </button>
-                        <button @click="next">
+                        <button class="strel_prav" @click="next">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.796387 11.8135H23.2041M12.0003 0.609604L17.6022 6.21154L23.2041 11.8135M23.2041 11.8135L12.0003 23.0173" stroke="#AAAAAA" stroke-width="0.990292"/>
                             </svg>
@@ -2481,16 +2511,25 @@
             >Запишитесь на бесплатную консультацию и получите план выхода из долговой ямы уже сегодня!</span>
         </div>
         <div
+                x-data x-init="
+                    phoneMask = IMask($refs.phoneInput, {
+                        mask: '+{7} (000) 000-00-00'
+                    })
+                "
                 x-show="isVisible"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
                 x-transition:enter="transition opacity ease-linear duration-460 delay-600"
                 x-transition:leave="none"
                 class="inps">
+            <script src="https://unpkg.com/imask"></script>
             <input
                     placeholder="Имя*"
             />
             <input
+                    x-ref="phoneInput"
+                    x-model="phone"
+                    autocomplete="off"
                     placeholder="Телефон*"
             />
         </div>
@@ -2514,7 +2553,7 @@
                 x-transition:enter="transition opacity ease-linear duration-460 delay-600"
                 x-transition:leave="none"
                 class="FP-btn">
-            <button>
+            <button @click="alertThanksShow=true">
             <span>
                Записаться
             </span>

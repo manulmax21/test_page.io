@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-  <script type="module" crossorigin src="./assets/mainIntro-CsrcPNDz.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-DYg1JhhR.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-Dy5zZxYv.css">
-  <link rel="stylesheet" crossorigin href="./assets/cardWidget-Bw_EcktW.css">
+  <script type="module" crossorigin src="./assets/mainIntro-IKpuwERY.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget--aLYMZL6.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-BQqjNPXx.css">
+  <link rel="stylesheet" crossorigin href="./assets/cardWidget-NTwhn5my.css">
 </head>
 <body>
 <div x-data="{
@@ -18,7 +18,8 @@
               showModalFreeCons: false,
               showModalExit: false,
               showModalCursor: false,
-              isCursorPoupup: true
+              isCursorPoupup: true,
+              alertThanksShow: false
             }"
      id="app"
 >
@@ -351,7 +352,7 @@
                     </div>
                 </div>
                 <div class="contacts-item">
-                    <div class="contact-icon">
+                    <div class="contact-icon contact-icon-r">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_1_2" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="2" y="2" width="16" height="16">
                                 <path d="M17.8588 10.0051C17.8588 5.66571 14.3411 2.14795 10.0017 2.14795C5.66229 2.14795 2.14453 5.66571 2.14453 10.0051C2.14453 14.3445 5.66229 17.8622 10.0017 17.8622C14.3411 17.8622 17.8588 14.3445 17.8588 10.0051Z" fill="white"/>
@@ -426,9 +427,20 @@
                     </span>
                 </div>
                 <div class="FC-form-item">
-                    <div class="inp">
+                    <script src="https://unpkg.com/imask"></script>
+                    <div
+                            x-data x-init="
+                        phoneMask = IMask($refs.phoneInput, {
+                            mask: '+{7} (000) 000-00-00'
+                        })
+                    "
+                            class="inp">
                         <input placeholder="Имя*" type="text"/>
-                        <input placeholder="Телефон*" type="text"/>
+                        <input
+                                x-ref="phoneInput"
+                                x-model="phone"
+                                autocomplete="off"
+                                placeholder="Телефон*" type="text"/>
                     </div>
                     <div class="pol-kon">
                         <label class="custom-checkbox-MY">
@@ -440,7 +452,7 @@
                         <span>Согласен с обработкой персональных данных согласно политики конфиденциальности</span>
                     </div>
                     <div class="FC-form-btn">
-                        <button>
+                        <button @click="alertThanksShow=true">
                             Отправить заявку
                         </button>
                     </div>
@@ -525,6 +537,14 @@
                 >Закрыть</button>
             </div>
         </div>
+    </div>    <div x-show="alertThanksShow" class="alertThanks">
+      <div>
+        <div class="title">
+          <h4>Спасибо за заявку!</h4>
+          <p>Наш менеджер скоро свяжется с вами!</p>
+        </div>
+        <button @click="alertThanksShow = false">Закрыть</button>
+      </div>
     </div>    <div
             class="main-intro"
             x-data="{
