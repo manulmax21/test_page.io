@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Юпитер</title>
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
@@ -366,220 +366,7 @@
             </div>
         </div>
     </div>
-    <div
-            x-data="{
-                errFreeConsName: false,
-                errFreeConsNum: false,
-                errFreeConsCheck: false,
-                inpValFreeCons: {name: '', phone: '', ch: false},
-                isValidFreeCons() {
-                    this.errFreeConsName = false;
-                    this.errFreeConsNum = false;
-                    this.errFreeConsCheck = false;
-                    if (!this.inpValFreeCons.phone || this.inpValFreeCons.phone.length < 18) {
-                        this.errFreeConsNum = true;
-                    }
-                    if (!this.inpValFreeCons.name) {
-                        this.errFreeConsName = true;
-                    }
-                    if (!this.inpValFreeCons.ch) {
-                        this.errFreeConsCheck = true;
-                    }
-                    else {
-                        if (!this.errFreeConsNum && !this.errFreeConsName && !this.errFreeConsCheck) {
-                            this.inpValFreeCons = {name: '', phone: '', ch: false}
-                            showModalFreeCons=false
-                            showModalExit=false
-                            alertThanksShow=true
-                        }
-                    }
-                },
-                exitFormValFreeCons() {
-                     this.inpValFreeCons = {name: '', phone: ''}
-                     this.errFreeConsName = false;
-                     this.errFreeConsNum = false;
-                     this.errFreeConsCheck = false;
-                     showModalFreeCons=false
-                     showModalExit=false
-                }
-            }"
-    >
-        <div
-                x-show="showModalFreeCons"
-                class="modalPoupup"
-                :style="{
-                cursor: showModalExit ? 'initial' :  'none'
-            }"
-        >
-            <div
-                    x-show="showModalFreeCons"
-                    x-transition:enter-start="-translate-x-156"
-                    x-transition:enter-end="translate-x-0"
-                    x-transition:enter="transition ease-linear duration-700"
-                    @click.away="() => {
-                          if (showModalFreeCons){
-                            showModalExit = true
-                          }
-                      }"
-                    @mousemove="() => {
-                        isCursorPoupup = true;
-                      }"
-                    @mouseleave="() => {
-                        isCursorPoupup = false;
-                      }"
-                    class="modalPopupContent baground-for-consultation-popup MPC-for-mob-form"
-            >
-                <div
-                        :style="{cursor: 'initial'}"
-                        class="freeConsultationMain"
-                >
-                    <div class="FC-info-item">
-                        <div
-                                @click="() => {
-                              showModalFreeCons = false
-                              showModalExit = false;
-                          }"
-                                class="exitMob_form_con"
-                        >
-                            <h3 class="freeConsultationH3">бесплатная консультация</h3>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L19 19M19 1L1 19" stroke="#161616"/>
-                            </svg>
-                        </div>
-    
-                        <span>
-                      Оставтье нам свои данные и наш менеджер перезвонит <br/>
-                      вам в ближайшее время и ответит на все ваши вопросы
-                    </span>
-                    </div>
-                    <div class="FC-form-item pravFC-form-item2008">
-                        <script src="https://unpkg.com/imask"></script>
-                        <div
-                                x-data x-init="
-                            phoneMask = IMask($refs.phoneInput, {
-                                mask: '+{7} (000) 000-00-00'
-                            })
-                        "
-                                class="inp inpsValidate">
-                            <div class="inp_item">
-                                <input x-model="inpValFreeCons.name" placeholder="Имя*" type="text"/>
-                                <span :style="{opacity: errFreeConsName ? 1 : 0}" class="errSpan">*Обязательное поле</span>
-                            </div>
-                            <div class="inp_item">
-                                <input
-                                        x-ref="phoneInput"
-                                        x-model="inpValFreeCons.phone"
-                                        autocomplete="off"
-                                        placeholder="Телефон*" type="text"/>
-                                <span :style="{opacity: errFreeConsNum ? 1 : 0}" class="errSpan">*Обязательное поле</span>
-                            </div>
-    
-                        </div>
-                        <div class="pol-kon">
-                            <label class="custom-checkbox-MY">
-                                <label class="custom-checkbox-MY">
-                                    <input x-model="inpValFreeCons.ch" type="checkbox" />
-                                    <span
-                                            :style="{'border-color': errFreeConsCheck ? '#DD342F' : '#161616'}"
-                                            class="checkmark"></span>
-                                </label>
-                            </label>
-                            <span class="polKonf">Согласен с <a class="aHov" href="/">обработкой персональных данных</a>  согласно <a class="aHov" href="/">политики конфиденциальности</a> </span>
-                        </div>
-                        <div class="FC-form-btn">
-                            <button @click="isValidFreeCons">
-                                Отправить заявку
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-                x-show="showModalFreeCons && !showModalExit && !isCursorPoupup"
-                x-data="{
-                              x: 0,
-                              y: 0,
-                              update(e) {
-                                this.x = e.clientX;
-                                this.y = e.clientY;
-                              }
-                            }"
-                @mousemove.window="update($event)"
-                :style="{zIndex: 28}"
-        >
-            <div
-    
-                    class="cursorFromPoupup baground-for-consultation-cursor"
-                    :style="`position: fixed; top: ${y}px; left: ${x}px; pointer-events: none;`"
-            >
-                <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 0.5L17 16.5M17 0.5L1 16.5" stroke="#262626"/>
-                </svg>
-            </div>
-        </div>
-        <div
-                x-data="{
-                              x: 0,
-                              y: 0,
-                              update(e) {
-                                  this.x = e.clientX;
-                                  this.y = e.clientY;
-                              }
-                            }"
-                @click.window="
-                        if (showModalFreeCons){
-                          update($event)
-                        }
-                      "
-                x-show="showModalExit && showModalFreeCons"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:enter="opacity ease-linear duration-700"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                x-transition:leave="opacity ease-linear duration-600"
-                :style="showModalExit ?
-                      `z-index: 20; `
-                      : ` `"
-                x-transition
-                class="modalPopupContent modal-FC-for-forgot-consultation"
-        >
-            <div
-                    x-show="showModalExit && showModalFreeCons"
-                    x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100"
-                    x-transition:enter="opacity ease-linear duration-200"
-                    x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0"
-                    x-transition:leave="opacity ease-linear duration-400"
-                    class="freeConsultationExit">
-                <div class="FCE-item">
-                    <h4>Забыли отправить заявку?</h4>
-                </div>
-                <div class="FCE-item">
-                    <button
-                            @click="(e) => {
-                      e.stopPropagation();
-                      showModalExit = false;
-                      }"
-                    >Вернуться к форме</button>
-                    <button
-                            @click="exitFormValFreeCons"
-                    >Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div x-show="alertThanksShow" class="alertThanks">
-      <div>
-        <div class="title">
-          <h4>Спасибо за заявку!</h4>
-          <p>Наш менеджер скоро свяжется с вами!</p>
-        </div>
-        <button @click="alertThanksShow = false">Закрыть</button>
-      </div>
-    </div>    <div class="PA-nav-title-main-acc contaiener2200">
+    <div class="PA-nav-title-main-acc contaiener2200">
         <div class="PA-tilte row">
             <h3 class="col-xl-6 col-md-12 col-sm-12 col-12">Личный кабинет</h3>
             <div class="btns-tab col-xl-6 col-md-12 col-sm-12 col-12">
@@ -946,7 +733,220 @@
                 </div>
             </div>
         </div>
-    </footer>    
+    </footer>    <div
+            x-data="{
+                errFreeConsName: false,
+                errFreeConsNum: false,
+                errFreeConsCheck: false,
+                inpValFreeCons: {name: '', phone: '', ch: false},
+                isValidFreeCons() {
+                    this.errFreeConsName = false;
+                    this.errFreeConsNum = false;
+                    this.errFreeConsCheck = false;
+                    if (!this.inpValFreeCons.phone || this.inpValFreeCons.phone.length < 18) {
+                        this.errFreeConsNum = true;
+                    }
+                    if (!this.inpValFreeCons.name) {
+                        this.errFreeConsName = true;
+                    }
+                    if (!this.inpValFreeCons.ch) {
+                        this.errFreeConsCheck = true;
+                    }
+                    else {
+                        if (!this.errFreeConsNum && !this.errFreeConsName && !this.errFreeConsCheck) {
+                            this.inpValFreeCons = {name: '', phone: '', ch: false}
+                            showModalFreeCons=false
+                            showModalExit=false
+                            alertThanksShow=true
+                        }
+                    }
+                },
+                exitFormValFreeCons() {
+                     this.inpValFreeCons = {name: '', phone: ''}
+                     this.errFreeConsName = false;
+                     this.errFreeConsNum = false;
+                     this.errFreeConsCheck = false;
+                     showModalFreeCons=false
+                     showModalExit=false
+                }
+            }"
+    >
+        <div
+                x-show="showModalFreeCons"
+                class="modalPoupup"
+                :style="{
+                cursor: showModalExit ? 'initial' :  'none'
+            }"
+        >
+            <div
+                    x-show="showModalFreeCons"
+                    x-transition:enter-start="-translate-x-156"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:enter="transition ease-linear duration-700"
+                    @click.away="() => {
+                          if (showModalFreeCons){
+                            showModalExit = true
+                          }
+                      }"
+                    @mousemove="() => {
+                        isCursorPoupup = true;
+                      }"
+                    @mouseleave="() => {
+                        isCursorPoupup = false;
+                      }"
+                    class="modalPopupContent baground-for-consultation-popup MPC-for-mob-form"
+            >
+                <div
+                        :style="{cursor: 'initial'}"
+                        class="freeConsultationMain"
+                >
+                    <div class="FC-info-item">
+                        <div
+                                @click="() => {
+                              showModalFreeCons = false
+                              showModalExit = false;
+                          }"
+                                class="exitMob_form_con"
+                        >
+                            <h3 class="freeConsultationH3">бесплатная консультация</h3>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L19 19M19 1L1 19" stroke="#161616"/>
+                            </svg>
+                        </div>
+    
+                        <span>
+                      Оставтье нам свои данные и наш менеджер перезвонит <br/>
+                      вам в ближайшее время и ответит на все ваши вопросы
+                    </span>
+                    </div>
+                    <div class="FC-form-item pravFC-form-item2008">
+                        <script src="https://unpkg.com/imask"></script>
+                        <div
+                                x-data x-init="
+                            phoneMask = IMask($refs.phoneInput, {
+                                mask: '+{7} (000) 000-00-00'
+                            })
+                        "
+                                class="inp inpsValidate">
+                            <div class="inp_item">
+                                <input x-model="inpValFreeCons.name" placeholder="Имя*" type="text"/>
+                                <span :style="{opacity: errFreeConsName ? 1 : 0}" class="errSpan">*Обязательное поле</span>
+                            </div>
+                            <div class="inp_item">
+                                <input
+                                        x-ref="phoneInput"
+                                        x-model="inpValFreeCons.phone"
+                                        autocomplete="off"
+                                        placeholder="Телефон*" type="text"/>
+                                <span :style="{opacity: errFreeConsNum ? 1 : 0}" class="errSpan">*Обязательное поле</span>
+                            </div>
+    
+                        </div>
+                        <div class="pol-kon">
+                            <label class="custom-checkbox-MY">
+                                <label class="custom-checkbox-MY">
+                                    <input x-model="inpValFreeCons.ch" type="checkbox" />
+                                    <span
+                                            :style="{'border-color': errFreeConsCheck ? '#DD342F' : '#161616'}"
+                                            class="checkmark"></span>
+                                </label>
+                            </label>
+                            <span class="polKonf">Согласен с <a class="aHov" href="/">обработкой персональных данных</a>  согласно <a class="aHov" href="/">политики конфиденциальности</a> </span>
+                        </div>
+                        <div class="FC-form-btn">
+                            <button @click="isValidFreeCons">
+                                Отправить заявку
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+                x-show="showModalFreeCons && !showModalExit && !isCursorPoupup"
+                x-data="{
+                              x: 0,
+                              y: 0,
+                              update(e) {
+                                this.x = e.clientX;
+                                this.y = e.clientY;
+                              }
+                            }"
+                @mousemove.window="update($event)"
+                :style="{zIndex: 28}"
+        >
+            <div
+    
+                    class="cursorFromPoupup baground-for-consultation-cursor"
+                    :style="`position: fixed; top: ${y}px; left: ${x}px; pointer-events: none;`"
+            >
+                <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 0.5L17 16.5M17 0.5L1 16.5" stroke="#262626"/>
+                </svg>
+            </div>
+        </div>
+        <div
+                x-data="{
+                              x: 0,
+                              y: 0,
+                              update(e) {
+                                  this.x = e.clientX;
+                                  this.y = e.clientY;
+                              }
+                            }"
+                @click.window="
+                        if (showModalFreeCons){
+                          update($event)
+                        }
+                      "
+                x-show="showModalExit && showModalFreeCons"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:enter="opacity ease-linear duration-700"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                x-transition:leave="opacity ease-linear duration-600"
+                :style="showModalExit ?
+                      `z-index: 20; `
+                      : ` `"
+                x-transition
+                class="modalPopupContent modal-FC-for-forgot-consultation"
+        >
+            <div
+                    x-show="showModalExit && showModalFreeCons"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:enter="opacity ease-linear duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    x-transition:leave="opacity ease-linear duration-400"
+                    class="freeConsultationExit">
+                <div class="FCE-item">
+                    <h4>Забыли отправить заявку?</h4>
+                </div>
+                <div class="FCE-item">
+                    <button
+                            @click="(e) => {
+                      e.stopPropagation();
+                      showModalExit = false;
+                      }"
+                    >Вернуться к форме</button>
+                    <button
+                            @click="exitFormValFreeCons"
+                    >Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div x-show="alertThanksShow" class="alertThanks">
+      <div>
+        <div class="title">
+          <h4>Спасибо за заявку!</h4>
+          <p>Наш менеджер скоро свяжется с вами!</p>
+        </div>
+        <button @click="alertThanksShow = false">Закрыть</button>
+      </div>
+    </div>    
 </div>
 </body>
 </html>
