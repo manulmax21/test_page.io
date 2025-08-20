@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-  <script type="module" crossorigin src="./assets/mainIntro-CjPNzzJo.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-50sCm1tr.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-BCiiAp_e.css">
-  <link rel="stylesheet" crossorigin href="./assets/cardWidget-CvPxqzX_.css">
-  <link rel="stylesheet" crossorigin href="./assets/pages-CRAuFwAw.css">
+  <script type="module" crossorigin src="./assets/mainIntro-CyJLOZgX.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget-D-abi7Sp.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-C_7YYkbr.css">
+  <link rel="stylesheet" crossorigin href="./assets/cardWidget-CFzG3gX_.css">
+  <link rel="stylesheet" crossorigin href="./assets/pages-yhvmA-LD.css">
 </head>
 <body>
 <div x-data="{
@@ -441,7 +441,7 @@
                           }"
                                 class="exitMob_form_con"
                         >
-                            <h3>бесплатная консультация</h3>
+                            <h3 class="freeConsultationH3">бесплатная консультация</h3>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L19 19M19 1L1 19" stroke="#161616"/>
                             </svg>
@@ -452,7 +452,7 @@
                       вам в ближайшее время и ответит на все ваши вопросы
                     </span>
                     </div>
-                    <div class="FC-form-item">
+                    <div class="FC-form-item pravFC-form-item2008">
                         <script src="https://unpkg.com/imask"></script>
                         <div
                                 x-data x-init="
@@ -484,7 +484,7 @@
                                             class="checkmark"></span>
                                 </label>
                             </label>
-                            <span>Согласен с обработкой персональных данных согласно политики конфиденциальности</span>
+                            <span class="polKonf">Согласен с <a class="aHov" href="/">обработкой персональных данных</a>  согласно <a class="aHov" href="/">политики конфиденциальности</a> </span>
                         </div>
                         <div class="FC-form-btn">
                             <button @click="isValidFreeCons">
@@ -571,15 +571,7 @@
             </div>
         </div>
     </div>
-    <div x-show="alertThanksShow" class="alertThanks">
-      <div>
-        <div class="title">
-          <h4>Спасибо за заявку!</h4>
-          <p>Наш менеджер скоро свяжется с вами!</p>
-        </div>
-        <button @click="alertThanksShow = false">Закрыть</button>
-      </div>
-    </div>    <div class="login-form-page"
+    <div class="login-form-page"
          x-data="{
                             isVisible: false,
                             errName: false,
@@ -654,14 +646,14 @@
                 </div>
                 <div class="sp">
                     <a href="./password_reset.html">
-                        <span>Забыли пароль?</span>
+                        <span class="aHov">Забыли пароль?</span>
                     </a>
                 </div>
                 <div class="btns">
                     <button @click="isValid">Войти</button>
                     <div class="text">
                         <span>У вас нет аккаунта?</span>
-                        <a href="./registration">Зарегистрироваться</a>
+                        <a class="aHov" href="./registration">Зарегистрироваться</a>
                     </div>
                 </div>
             </div>
@@ -922,17 +914,17 @@
             <div
                     class="nav-adress">
                 <div class="bare">
-                    <p class="el-adress">2025 Юпитер Все права защищены</p>
-                    <p class="el-adress">Политика конфиденциальности</p>
+                    <a href="./"><p class="el-adress">2025 Юпитер Все права защищены</p></a>
+                    <a href="./"><p class="el-adress">Политика конфиденциальности</p></a>
                 </div>
-                <p class="el-adress ac">2025 Юпитер Все права защищены</p>
-                <p class="el-adress ac">Политика конфиденциальности</p>
-                <p class="el-adress">Согласие на обработку ПДн</p>
-                <p class="el-adress ac">Политика обработки файлов cookie</p>
-                <p class="el-adress ac">Разработано в MaPbiz Group</p>
+                <a href="./"><p class="el-adress ac">2025 Юпитер Все права защищены</p></a>
+                <a href="./"><p class="el-adress ac">Политика конфиденциальности</p></a>
+                <a href="./"><p class="el-adress">Согласие на обработку ПДн</p></a>
+                <a href="./"><p class="el-adress ac">Политика обработки файлов cookie</p></a>
+                <a href="./"><p class="el-adress ac">Разработано в MaPbiz Group</p></a>
                 <div class="bare">
-                    <p class="el-adress">Политика обработки файлов cookie</p>
-                    <p class="el-adress">Разработано в MaPbiz Group</p>
+                    <a href="./"><p class="el-adress">Политика обработки файлов cookie</p></a>
+                    <a href="./"><p class="el-adress">Разработано в MaPbiz Group</p></a>
                 </div>
             </div>
         </div>

@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-  <script type="module" crossorigin src="./assets/mainIntro-CjPNzzJo.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-50sCm1tr.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-BCiiAp_e.css">
-  <link rel="stylesheet" crossorigin href="./assets/cardWidget-CvPxqzX_.css">
-  <link rel="stylesheet" crossorigin href="./assets/pages-CRAuFwAw.css">
+  <script type="module" crossorigin src="./assets/mainIntro-CyJLOZgX.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget-D-abi7Sp.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-C_7YYkbr.css">
+  <link rel="stylesheet" crossorigin href="./assets/cardWidget-CFzG3gX_.css">
+  <link rel="stylesheet" crossorigin href="./assets/pages-yhvmA-LD.css">
 </head>
 <body>
 <div x-data="{
@@ -441,7 +441,7 @@
                           }"
                                 class="exitMob_form_con"
                         >
-                            <h3>бесплатная консультация</h3>
+                            <h3 class="freeConsultationH3">бесплатная консультация</h3>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 1L19 19M19 1L1 19" stroke="#161616"/>
                             </svg>
@@ -452,7 +452,7 @@
                       вам в ближайшее время и ответит на все ваши вопросы
                     </span>
                     </div>
-                    <div class="FC-form-item">
+                    <div class="FC-form-item pravFC-form-item2008">
                         <script src="https://unpkg.com/imask"></script>
                         <div
                                 x-data x-init="
@@ -484,7 +484,7 @@
                                             class="checkmark"></span>
                                 </label>
                             </label>
-                            <span>Согласен с обработкой персональных данных согласно политики конфиденциальности</span>
+                            <span class="polKonf">Согласен с <a class="aHov" href="/">обработкой персональных данных</a>  согласно <a class="aHov" href="/">политики конфиденциальности</a> </span>
                         </div>
                         <div class="FC-form-btn">
                             <button @click="isValidFreeCons">
@@ -610,6 +610,9 @@
             errNum: false,
             errEmail: false,
             errCheck: false,
+            alertShUpdate: false,
+            tit: 'Ваши данные успешно обновлены',
+            txt: 'Изменения сохранены и готовы к использованию.',
             inpVal: {name: '', phone: '', ch: false, email: ''},
             isValid() {
                 this.errName = false;
@@ -628,7 +631,7 @@
                 else {
                     if (!this.errNum && !this.errName && !this.errEmail) {
                         this.inpVal = {name: '', phone: '', ch: false, email: ''}
-                        alertThanksShow=true
+                        this.alertShUpdate=true
                     }
                 }
             },
@@ -640,7 +643,15 @@
             }
           }"
     >
-        <h4>Шаг 1. Заполните данные Профиля</h4>
+        <div x-show="alertShUpdate" class="alertThanks">
+            <div>
+                <div class="title">
+                    <h4>Ваши данные успешно обновлены</h4>
+                    <p>Изменения сохранены.</p>
+                </div>
+                <button @click="alertShUpdate = false">Закрыть</button>
+            </div>
+        </div>        <h4>Шаг 1. Заполните данные Профиля</h4>
         <div class="con-photo">
             <div class="PA-F-P-photo">
                 <img src="./assets/b3d04779161b38baa2eb3257e807b4ce308ab768-D_m2BBu9.jpg">
@@ -689,27 +700,65 @@
                     <button class="btn-BColor-yellow" @click="isValid">Сохранить изменения</button>
                 </div>
                 <div :style="{'justify-content': 'flex-end',
-    display:' flex'
-}" class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        display:' flex'
+                    }" class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <a class="aHov" :style="{width: '200px'}">Выйти из аккаунта</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="PA-form-profile contaiener2200 row">
-        <h4 class="col-xl-12 col-lg-12 col-md-12 col-sm-12 g-3">Шаг 2. Загрузка данных и документов</h4>
+    <div
+            x-data="{
+            errTxt: false,
+            file1: null,
+            file2: null,
+            file3: null,
+            alertShUpdate: false,
+            tit: 'Ваши данные успешно обновлены',
+            txt: 'Изменения сохранены и готовы к использованию.',
+            inpVal: {txt1: '', txt2: '', txt3: ''},
+            isValid() {
+                if (this.inpVal.txt1 || this.inpVal.txt2 || this.inpVal.txt3 || this.file1 || this.file2 || this.file3) {
+                    this.errTxt = false;
+                    this.inpVal = {txt1: '', txt2: '', txt3: ''}
+                    this.file1= null
+                    this.file2= null
+                    this.file3=null
+                    this.alertShUpdate=true
+                }
+                else {
+                    this.errTxt = true;
+                }
+            },
+            handleFileChange(event, fileNum) {
+                this['file' + fileNum] = event.target.files[0] || null;
+            }
+          }"
+            class="PA-form-profile contaiener2200 row">
+        <div x-show="alertShUpdate" class="alertThanks">
+            <div>
+                <div class="title">
+                    <h4>Ваши данные успешно обновлены</h4>
+                    <p>Изменения сохранены.</p>
+                </div>
+                <button @click="alertShUpdate = false">Закрыть</button>
+            </div>
+        </div>        <h4 class="col-xl-12 col-lg-12 col-md-12 col-sm-12 g-3">Шаг 2. Загрузка данных и документов</h4>
         <div class="PA-item col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <span>Документ 1</span>
             <input
                     type="file"
                     placeholder="Загрузить файл"
+                    @change="handleFileChange($event, 1)"
             />
+            <span :style="{opacity: errTxt ? 1 : 0}" class="errSpan">*Заполните поле</span>
         </div>
         <div class="PA-item col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <span>Документ 2</span>
             <input
                     type="file"
                     placeholder="Загрузить файл"
+                    @change="handleFileChange($event, 2)"
             />
         </div>
         <div class="PA-item col-xl-4 col-lg-4 col-md-12 col-sm-12">
@@ -717,29 +766,34 @@
             <input
                     type="file"
                     placeholder="Загрузить файл"
+                    @change="handleFileChange($event, 3)"
             />
         </div>
         <div class="PA-item col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <span>Вопрос 1</span>
             <input
+                    x-model="inpVal.txt1"
                     placeholder="Ваш ответ"
             />
+            <span :style="{opacity: errTxt ? 1 : 0}" class="errSpan">*Заполните поле</span>
         </div>
         <div class="PA-item col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <span>Вопрос 2</span>
             <input
+                    x-model="inpVal.txt2"
                     placeholder="Ваш ответ"
             />
         </div>
         <div class="PA-item col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <span>Вопрос 3</span>
             <input
+                    x-model="inpVal.txt3"
                     placeholder="Ваш ответ"
             />
         </div>
-        <div class="btns col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="btns btnPravPerAcc_20_08 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="itemBtn">
-                <button class="btn-BColor-yellow" @click="alertThanksShow=true">Сохранить изменения</button>
+                <button class="btn-BColor-yellow" @click="isValid">Сохранить изменения</button>
             </div>
         </div>
     </div>
@@ -998,17 +1052,17 @@
             <div
                     class="nav-adress">
                 <div class="bare">
-                    <p class="el-adress">2025 Юпитер Все права защищены</p>
-                    <p class="el-adress">Политика конфиденциальности</p>
+                    <a href="./"><p class="el-adress">2025 Юпитер Все права защищены</p></a>
+                    <a href="./"><p class="el-adress">Политика конфиденциальности</p></a>
                 </div>
-                <p class="el-adress ac">2025 Юпитер Все права защищены</p>
-                <p class="el-adress ac">Политика конфиденциальности</p>
-                <p class="el-adress">Согласие на обработку ПДн</p>
-                <p class="el-adress ac">Политика обработки файлов cookie</p>
-                <p class="el-adress ac">Разработано в MaPbiz Group</p>
+                <a href="./"><p class="el-adress ac">2025 Юпитер Все права защищены</p></a>
+                <a href="./"><p class="el-adress ac">Политика конфиденциальности</p></a>
+                <a href="./"><p class="el-adress">Согласие на обработку ПДн</p></a>
+                <a href="./"><p class="el-adress ac">Политика обработки файлов cookie</p></a>
+                <a href="./"><p class="el-adress ac">Разработано в MaPbiz Group</p></a>
                 <div class="bare">
-                    <p class="el-adress">Политика обработки файлов cookie</p>
-                    <p class="el-adress">Разработано в MaPbiz Group</p>
+                    <a href="./"><p class="el-adress">Политика обработки файлов cookie</p></a>
+                    <a href="./"><p class="el-adress">Разработано в MaPbiz Group</p></a>
                 </div>
             </div>
         </div>

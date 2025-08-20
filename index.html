@@ -7,11 +7,11 @@
   <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   <title>Vite + TS</title>
-  <script type="module" crossorigin src="./assets/mainIntro-CjPNzzJo.js"></script>
-  <script type="module" crossorigin src="./assets/cardWidget-50sCm1tr.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/mainIntro-BCiiAp_e.css">
-  <link rel="stylesheet" crossorigin href="./assets/cardWidget-CvPxqzX_.css">
-  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-YD37KrDy.css">
+  <script type="module" crossorigin src="./assets/mainIntro-CyJLOZgX.js"></script>
+  <script type="module" crossorigin src="./assets/cardWidget-D-abi7Sp.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/mainIntro-C_7YYkbr.css">
+  <link rel="stylesheet" crossorigin href="./assets/cardWidget-CFzG3gX_.css">
+  <link rel="stylesheet" crossorigin href="./assets/sectionTableWidget1-BVTdQKcm.css">
 </head>
 <body>
 <div
@@ -639,7 +639,7 @@
                         }"
                               class="exitMob_form_con"
                       >
-                          <h3>бесплатная консультация</h3>
+                          <h3 class="freeConsultationH3">бесплатная консультация</h3>
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M1 1L19 19M19 1L1 19" stroke="#161616"/>
                           </svg>
@@ -650,7 +650,7 @@
                     вам в ближайшее время и ответит на все ваши вопросы
                   </span>
                   </div>
-                  <div class="FC-form-item">
+                  <div class="FC-form-item pravFC-form-item2008">
                       <script src="https://unpkg.com/imask"></script>
                       <div
                               x-data x-init="
@@ -682,7 +682,7 @@
                                           class="checkmark"></span>
                               </label>
                           </label>
-                          <span>Согласен с обработкой персональных данных согласно политики конфиденциальности</span>
+                          <span class="polKonf">Согласен с <a class="aHov" href="/">обработкой персональных данных</a>  согласно <a class="aHov" href="/">политики конфиденциальности</a> </span>
                       </div>
                       <div class="FC-form-btn">
                           <button @click="isValidFreeCons">
@@ -825,120 +825,89 @@
   </div>
   <div
           x-data="{
-                        widthScrollContainer: 0,
-                        init() {
-                                            setTimeout(() => {
-                                            const container = this.$refs.scroller;
-                                            if (container) {
-                                              this.widthScrollContainer = container.scrollWidth - container.clientWidth;
-                                              console.log('Максимальная ширина прокрутки:', this.widthScrollContainer);
-                                            }
-                                          }, 100);
-                                        },
-                                    scrollHandler(event) {
-                                          const container = this.$refs.scroller;
-                                          const pageY = event.pageY ?? event.clientY; // на случай, если pageY undefined
+  widthScrollContainer: 0,
+  WWWind: 0,
+  scrollTimeout: null, // для дебаунса прокрутки
+  init() {
+    const container = this.$refs.scroller;
+    WWWind = window.innerWidth;
+      if (container) {
+        this.widthScrollContainer = container.scrollWidth - container.clientWidth;
+        console.log('Максимальная ширина прокрутки:', this.widthScrollContainer);
+      }
+  },
+  scrollHandler2(event) {
+    const container = this.$refs.scroller;
+    if (!container) return;
+    WWWind = window.innerWidth;
+    const scrollWidth = container.scrollWidth - container.clientWidth;
+    const pageY = event.pageY ?? event.clientY;
+    const pageX = window.innerWidth;
+    const minScrollDown = 2100;
+    const maxScrollDown = 7500;
 
-                                          console.log(container.scrollLeft);
-                                          console.log(window.pageYOffset);
-                                          console.log(pageY);
-                                          console.log(event.deltaY);
+    // Получение текущей позиции вертикального скролла,
+    // ограниченной между minScrollDown и maxScrollDown
+    const currentPositionInContainer = () => {
+      if (pageY > minScrollDown && pageY < maxScrollDown) {
+        return pageY - minScrollDown;
+      }
+      if (pageY >= maxScrollDown) return maxScrollDown - minScrollDown;
+      return 0;
+    };
 
-                                          // Игнорируем если горизонтальная прокрутка больше вертикальной (вероятно пользователь прокручивает вбок)
-                                          if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+    // Игнорируем горизонтальные прокрутки, если горизонтальный скролл больше вертикального
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
 
-                                          // Ограничиваем обработку по вертикальной позиции мыши (пример)
-                                          if (pageY > 2100 && pageY < 11280) {
-                                            if (event.deltaY > 0) {
-                                              container.scrollLeft += event.deltaY + 150;
-                                            } else {
-                                              container.scrollLeft -= (-2.6 * event.deltaY);
-                                            }
+    // плавная регулировка скорости прокрутки
+    const speedFactor = 7.2;
 
-                                            // Ограничения по горизонтальному скроллу
-                                            if (pageY < 2100) {
-                                              container.scrollLeft = 200;
-                                            }
-                                            if (pageY > 11280) {
-                                              container.scrollLeft = 3700;
-                                            }
+    // Текущий процент прокрутки
+    const currentPercent = container.scrollLeft / scrollWidth;
 
-                                            if (
-                                              (event.deltaY > 0 && container.scrollLeft + container.clientWidth < container.scrollWidth) ||
-                                              (event.deltaY < 0 && container.scrollLeft > 0)
-                                            ) {
-                                              event.preventDefault();
-                                            }
-                                          }
-                                        },
+    // Процент вертикальной позиции внутри диапазона
+    const verticalPositionPercent = currentPositionInContainer() / (maxScrollDown - minScrollDown);
 
-                                        scrollHandler2(event) {
-                                          const container = this.$refs.scroller;
-                                          const scrollWidth = container.scrollWidth - container.clientWidth;
-                                          const pageY = event.pageY ?? event.clientY;
-                                          const pageX = window.innerWidth ;
-                                          const minScrollDown = 2100;
-                                          const maxScrollDown = 7500;
-                                          const currentPositionInContainer = function() {
-                                            if (pageY > minScrollDown && pageY < maxScrollDown) {
-                                                return pageY - minScrollDown
-                                            }
-                                            if (pageY > maxScrollDown) return maxScrollDown
-                                            if (pageY <= minScrollDown) return 0
-                                          };
-                                          // Игнорируем горизонтальные прокрутки меньше вертикальных
-                                          if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+    // Рассчитываем новую позицию прокрутки внутри контейнера
+    let newPercent = verticalPositionPercent;
 
-                                          const delta = event.deltaY;
+    // Ограничиваем от 0 до 1
+    newPercent = Math.min(Math.max(newPercent, 0), 1);
 
-                                          // Процент изменения на основе deltaY и ширины контейнера
-                                          // Коэффициент скорости можно менять (например, 0.2)
-                                          const speedFactor = 7.2;
+    // Рассчитываем новое значение scrollLeft
+    let newScrollLeft = newPercent * scrollWidth;
 
-                                          // Текущее положение прокрутки в процентах от максимума
-                                          const currentPercent = container.scrollLeft / scrollWidth;
+    // Небольшие корректировки порогов для более плавного скролла на краях
+    if (newScrollLeft < 600) {
+      newScrollLeft = 600;
+    }
+    if ((pageY < minScrollDown + 100 || newScrollLeft < 900) && pageX > 2200) {
+      newScrollLeft = 800;
+    }
 
-                                          // Новый процент прокрутки с учетом направления и скорости
-                                          //let newPercent = currentPercent + (delta * speedFactor) / scrollWidth;
-                                            let newPercent = (currentPositionInContainer() / this.widthScrollContainer);
+    // Используем дебаунс - чтобы не вызывать scrollTo слишком часто и добиться большей плавности
+    if (this.scrollTimeout) clearTimeout(this.scrollTimeout);
 
-                                          // Ограничиваем значение от 0 до 1
-                                          newPercent = Math.min(Math.max(newPercent, 0), 1);
-
-                                          // Вычисляем новое значение scrollLeft по проценту
-                                          let newScrollLeft = newPercent * scrollWidth;
-
-                                          // Прокручиваем с плавным поведением
-                                           if (event.pageY < minScrollDown + 100 && pageX < 2200) {
-                                            newScrollLeft = 600
-                                          }
-                                          if (newScrollLeft < 600 && pageX < 2200) {
-                                            newScrollLeft = 600
-                                          }
-                                          if ((event.pageY < minScrollDown + 100 || newScrollLeft < 900) && pageX > 2200) {
-                                            newScrollLeft = 800
-                                          }
-                                          if (window.innerWidth > 768) {
-                                            container.scrollTo({
-                                            left: newScrollLeft,
-                                            behavior: 'smooth'
-                                          });
-                                          }
-                                          // Отменяем стандартный скролл страницы, если прокрутка допустима
-                                          if (
-                                            (delta > 0 && container.scrollLeft + container.clientWidth < container.scrollWidth) ||
-                                            (delta < 0 && container.scrollLeft > 0)
-                                          ) {
-                                            event.preventDefault();
-                                          }
-                                        }
-                                  }"
+    // Анимируем прокрутку с задержкой, чтобы сгладить перепрыгивания
+    this.scrollTimeout = setTimeout(() => {
+      if (window.innerWidth > 768) {
+        container.scrollTo({
+          left: newScrollLeft,
+          behavior: 'smooth'
+        });
+      }
+    }, 20);
+    // Отменяем стандартный скролл при возможности прокрутки нашего контейнера
+    if (
+      (event.deltaY > 0 && container.scrollLeft + container.clientWidth < container.scrollWidth) ||
+      (event.deltaY < 0 && container.scrollLeft > 0)
+    ) {
+      event.preventDefault();
+    }
+  }
+}"
           x-init="init()"
-          :style="{
-              height: window.innerWidth <= 768
-                ? '100%'
-                : (widthScrollContainer ? `${widthScrollContainer + 1500}px` : '7000px')
-            }"
+
           class="swiper-round-horizantal-scroll-widget contaiener2200"
   >
     <div
@@ -1152,7 +1121,7 @@
                       :key="idx"
               >
                 <div
-                        class="SWLCW-card"
+                        class="SWLCW-card prav-swiper-2008-padr"
                         x-show="isVisible"
                         x-transition:enter="transition transform ease-out duration-1000 delay-1000"
                         x-transition:enter-start="opacity-0"
@@ -1199,7 +1168,6 @@
     <div
             x-data="scrollCards()"
             x-init="init()"
-            @wheel.window.prevent="onWheel($event)"
             class="CCYW-cards"
     >
       <template x-for="(section, index) in sections" :key="index">
@@ -1711,17 +1679,17 @@
           <div
                   class="nav-adress">
               <div class="bare">
-                  <p class="el-adress">2025 Юпитер Все права защищены</p>
-                  <p class="el-adress">Политика конфиденциальности</p>
+                  <a href="./"><p class="el-adress">2025 Юпитер Все права защищены</p></a>
+                  <a href="./"><p class="el-adress">Политика конфиденциальности</p></a>
               </div>
-              <p class="el-adress ac">2025 Юпитер Все права защищены</p>
-              <p class="el-adress ac">Политика конфиденциальности</p>
-              <p class="el-adress">Согласие на обработку ПДн</p>
-              <p class="el-adress ac">Политика обработки файлов cookie</p>
-              <p class="el-adress ac">Разработано в MaPbiz Group</p>
+              <a href="./"><p class="el-adress ac">2025 Юпитер Все права защищены</p></a>
+              <a href="./"><p class="el-adress ac">Политика конфиденциальности</p></a>
+              <a href="./"><p class="el-adress">Согласие на обработку ПДн</p></a>
+              <a href="./"><p class="el-adress ac">Политика обработки файлов cookie</p></a>
+              <a href="./"><p class="el-adress ac">Разработано в MaPbiz Group</p></a>
               <div class="bare">
-                  <p class="el-adress">Политика обработки файлов cookie</p>
-                  <p class="el-adress">Разработано в MaPbiz Group</p>
+                  <a href="./"><p class="el-adress">Политика обработки файлов cookie</p></a>
+                  <a href="./"><p class="el-adress">Разработано в MaPbiz Group</p></a>
               </div>
           </div>
       </div>
